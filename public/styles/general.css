@@ -1,0 +1,244 @@
+/* 
+==================================================
+AJUSTES GENERALES
+==================================================
+*/
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+}
+
+body{
+    background-color: var(--gris-70);
+    overflow-x: hidden;
+}
+
+:root {
+  /* === ROJOS === */
+  
+  --rojo-tabla1: #8b1111;
+  --rojo-tabla2: #6d0d0d;
+
+  --rojo-falta1: #9d263e;
+  --rojo-falta2: #b1304a;
+
+  --rojo-slider1: #70182a;
+  --rojo-slider2: #94162f;
+
+  /* === AMARILLOS === */
+
+  --amarillo-modificar1:  #FFD500;
+  --amarillo-modificar2:  #FFE666;
+
+  /* === VERDES === */
+
+  --verde-tabla1: #2b6839;
+  --verde-tabla2: #174121;
+
+  /* === CIANES / TURQUESAS === */
+
+  --cian-restablecer1: #379d7f;
+  --cian-restablecer2: #44bd8d;
+
+  /* === AZULES === */
+
+  --azul-restablecer1: #3492bf;
+  --azul-restablecer2: #43a1cf;
+
+  /* === VIOLETAS === */
+
+  --violeta1:  #7200FF;
+  --violeta2:  #9933FF;
+  --violeta3:  #B266FF;
+
+  /* === GRISES === */
+  --gris-0:   #000000;
+  --gris-10:  #1B1B1B;
+  --gris-20:  #363636;
+  --gris-30:  #515151;
+  --gris-40:  #6B6B6B;
+  --gris-50:  #868686;
+  --gris-60:  #A1A1A1;
+  --gris-70:  #BCBCBC;
+  --gris-80:  #D7D7D7;
+  --gris-90:  #F2F2F2;
+  --gris-100: #FFFFFF;
+
+  --gris-tabla1: #2a2a2b;
+  --gris-tabla2: #1f2020;
+}
+
+/* 
+==================================================
+HEADER
+==================================================
+*/
+
+header{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    margin-right: 2%;
+    color: var(--gris-100);
+}
+
+.logo>p{
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.logo>p>a{
+    text-decoration: none;
+    color: var(--gris-100);
+    font-size: 30px;
+    font-weight: 900;
+}
+/* 
+==================================================
+CABECERA: MIGAS DE PAN
+==================================================
+*/
+
+.migaspan{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 2em;
+    padding: 1%;
+    background-color: var(--gris-tabla2);
+    color: var(--gris-100);
+}
+
+.migaspan li{
+    list-style-type: none;
+    font-size: 14px;
+    margin-right: 0.5%;
+
+}
+
+.migaspan li+li:before{
+    content: " | ";
+}
+
+.migaspan a{
+    text-decoration: none;
+    color: var(--gris-100);
+}
+
+.migaspan li a:hover {
+  text-decoration: underline;
+}
+
+.actual{
+    font-weight: 600;
+}
+
+.nombre{
+    color: var(--violeta3);
+}
+
+/* 
+==================================================
+CABECERA: DATOS PERFIL
+==================================================
+*/
+header{
+    background-color: var(--gris-tabla1);
+}
+
+.cabecera{
+    display: flex;
+    align-items: center;
+    margin: 1em 1em 1em 1em;
+}
+
+.inputgroup_perfil{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 100%;
+}
+
+.salir{
+    width: 6em;
+    height: 2.5em;
+    border: none;
+    margin-left: 0px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.perfil{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--gris-100);
+    width: 14em;
+    padding: 0.8%;
+    border-radius: 5px 0px 0px 5px;
+    margin-right: 0px;
+}
+
+/*
+=======================================
+BODY
+=======================================
+*/
+
+.contenedor_listado{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: baseline;
+    padding: 1% 3% 3% 3%;
+}
+
+.botonera_admin{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.gestion_usuarios{
+    display: flex;
+    justify-content: left;
+    align-content: center;
+    width: 100%;
+}
+
+/* 
+==================================================
+FILTRADOR
+==================================================
+*/
+
+.filtrador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+#filtrador, #filtros{
+    height: 3em;
+    font-size: 16px;
+    padding: 1% 1% 1% 1%; 
+    border: 1px solid var(--gris-100); 
+}
+
+#filtros{
+    width: 30%;
+}
+
+#filtrador{
+    width: 70%;
+}

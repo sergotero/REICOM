@@ -1,0 +1,369 @@
+/*
+=======================================
+GENERALES: FILDSET
+=======================================
+*/
+
+fieldset{
+    display: flex;
+    flex-flow: column;
+    box-sizing: border-box;
+    width: 70%;
+    padding: 2%;
+    margin: 1%;
+    border-radius: 0.75em;
+    border: none;
+    background-color: var(--gris-20);
+    color: var(--gris-100);
+}
+
+
+fieldset h3{
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gris-100);
+    margin-bottom: 1%;
+}
+
+/*
+=======================================
+GENERALES: INPUT
+=======================================
+*/
+
+input, select, textarea{
+    background-color: var(--gris-100);
+    border: none;
+}
+
+textarea{
+    height: 5em;
+}
+
+input:focus, select:focus{
+    outline-color: var(--gris-30);
+}
+
+
+input:disabled, select:disabled{
+    background-color: var(--gris-50);
+    color: var(--gris-20);
+}
+
+/*
+=======================================
+GENERALES: INPUTGROUP
+=======================================
+*/
+
+.inputgroup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputgroup label{
+    width: 25%;
+    font-style: italic;
+}
+
+.inputgroup input, select{
+    margin: 1em;
+    width: 75%;
+    padding: 0.5em;
+}
+
+/*
+=======================================
+GENERALES: INPUTGROUPCHECK
+=======================================
+*/
+
+.actividades{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.actividades h3{
+    display: block;
+}
+
+.dias_semana{
+    display: flex;
+}
+
+.inputgroupcheck{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    border-bottom: 1px solid var(--gris-50);
+    border-bottom-style: dotted;
+}
+
+.inputgroupcheck label{
+    width: 75%;
+    margin-left: 1em;
+}
+
+.inputgroupcheck input[type="checkbox"]{
+    width: 25%;
+    transform: scale(1.5);
+}
+
+/*
+=======================================
+GENERALES: INPUTGROUPFILTRO
+=======================================
+*/
+
+.inputgroupfiltro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.inputgroupfiltro input, select{
+    margin: 0em;
+}
+
+/* 
+==================================================
+GENERALES: TABLAS
+==================================================
+*/
+table, thead, th, tbody, tr, td{
+    border-collapse: collapse;
+    text-align: center;
+    padding: 1%;
+    color: var(--gris-100);
+}
+
+th{
+    background-color: var(--gris-tabla1);
+    font-weight: 700;
+}
+
+td{
+    padding: 1em;
+    min-width: 6em;
+}
+
+tr:nth-of-type(even){
+    background-color: var(--gris-tabla1);
+}
+
+tr:nth-of-type(odd){
+    background-color: var(--gris-tabla2);
+}
+
+
+/* 
+==================================================
+GENERALES: TABLAS-ICONOS
+==================================================
+*/
+
+.fa-check{
+    color: var(--cian-restablecer2);
+}
+
+.fa-xmark{
+    color: var(--rojo-falta2);
+}
+
+/* 
+==================================================
+TABLAS ESPECÍFICAS
+==================================================
+*/
+
+#listado, #listado_usuarios, #listado_actividades{
+    width: 75%;
+}
+
+#listado_alumnos td{
+    padding: 1em 2em 1em 2em;
+}
+
+.acciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5em;
+}
+
+/*
+=======================================
+FORMULARIOS PARA BUSQUEDAS
+=======================================
+*/
+
+form[name="curso_grupo"]{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1%;
+}
+
+
+form[name="buscador_alumnos"]{
+    display: flex;
+}
+
+form[name="acciones_buscador"]{
+    display: flex;
+}
+
+form[name="periodos"]{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1%;
+}
+
+form[name="curso_grupo"] select{
+    margin: 1em;
+}
+
+/*
+=======================================
+FORMULARIOS PARA REGISTROS Y MODIFICACIONES
+=======================================
+*/
+
+form[name="mod_alumno"],form[name="mod_usuario"], form[name="mod_actividades"], form[name="crea_alumno"], form[name="crear_usuarios"], form[name="acceder"], form[name="actividades"], form[name="crea_multiple"]{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1%;
+}
+
+.alumno input, .alumno select, .alumno textarea{
+    margin: 1em;
+    width: 75%;
+    padding: 0.5em;
+    min-height: fit-content
+}
+
+.usuario input, .usuario select, .usuario textarea{
+    margin: 1em;
+    width: 75%;
+    padding: 0.5em;
+    min-height: fit-content
+}
+
+.actividad input, .actividad select, .actividad textarea{
+    margin: 1em;
+    width: 75%;
+    padding: 0.5em;
+    min-height: fit-content
+}
+
+/* Hacemos que el iput file no sea visible */
+input[type="file"] {
+  display: none;
+}
+
+/* Le damos estilo a la ETIQUETA */
+.subida-archivos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+    width: 8%;
+    height: 2em;
+    width: 10em;
+    height: 2.5em;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--azul-restablecer1);
+}
+
+.subida-archivos:hover{
+    cursor: pointer;
+    background-color: var(--azul-restablecer2);
+}
+
+span[id="nombre_archivo"]{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 1%;
+    background-color: var(--gris-100);
+    height: 2.5em;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    color: var(--gris-20);
+    overflow-x: hidden;
+}
+
+/* 
+==================================================
+FORMULARIOS PARA BOTONES ADMIN
+==================================================
+*/
+
+form[name="opciones"], form[name="gestion_usuarios"], form[name="acciones_usuario"], form[name="form_salir"], form[name="acciones"]{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 
+==================================================
+MEDIAQUERIES
+==================================================
+*/
+
+@media screen and (max-width:1000px) {
+
+    #listado_alumnos td{
+        padding: 0.5em 1em 0.5em 1em;
+    }
+
+    #filtros{
+        height: 2em;
+        font-size: 13px;
+    }
+
+    #filtrador{
+        height: 2.25em;
+        font-size: 14px;
+    }
+
+    #buscador{
+        height: 2.75em;
+        font-size: 12px;
+    }
+
+    button[name="salir"]{
+        width: 6em;
+        height: 2.25em;
+        font-size: 14px;
+    }
+
+    table, tbody, tr, td{
+        font-size: 14px;
+        padding: 0.25em;
+    }
+
+}

@@ -1,0 +1,84 @@
+/*
+=======================================
+AVISOS GENERAL
+=======================================
+*/
+
+.avisos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+=======================================
+AVISOS DE ERROR
+=======================================
+*/
+
+.errores{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--rojo-falta2);
+    color: var(--gris-100);
+    width: 50%;
+    margin: 1% 0% 1% 0%;
+    padding: 1%;
+}
+
+/*
+=======================================
+AVISOS DE ÉXITO
+=======================================
+*/
+
+.exitos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+    width: 50%;
+    margin: 1% 0% 1% 0%;
+    padding: 1%;
+}
+
+
+/*
+=======================================
+CAPTURA DE ERRORES: ALUMNOS REPETIDOS
+=======================================
+*/
+
+.error_alumnos{
+    width: 50%;
+    margin: 1% 0% 1% 0%;
+    padding: 4%;
+    background-color: var(--rojo-falta2);
+    color: var(--gris-100);
+}
+
+.error_alumnos p{
+    margin-bottom: 3%;
+}
+
+.error_alumnos li{
+    margin-left: 10%;
+    font-style: italic;
+}
+
+/*
+=======================================
+AVISO ELIMINAR
+=======================================
+*/
+
+.eliminar{
+    display: block;
+    width: 100%;
+    margin: 1% 0% 1% 0%;
+    padding: 2%;
+    background-color: var(--rojo-falta2);
+    color: var(--gris-100);
+}
