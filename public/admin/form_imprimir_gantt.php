@@ -15,7 +15,7 @@ $filas = [];
 $salto = "<br>";
 
 /*
- El código JS hace un fetch (POST) con JSON en el cuerpo de la petición, pero no llegarán a PHP como $_POST['curso'], sino como un flujo JSON. Por ello hay que usar $inputJSON = file_get_contents('php://input');
+El código JS hace un fetch (POST) con JSON en el cuerpo de la petición, pero no llegarán a PHP como $_POST['curso'], sino como un flujo JSON. Por ello hay que usar $inputJSON = file_get_contents('php://input');
  */
 
 // Leer el contenido raw de la petición

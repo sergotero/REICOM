@@ -1,0 +1,616 @@
+/*
+=======================================
+GENERAL
+=======================================
+*/
+
+main .botonera{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0% 3% 0% 3%;
+    width: 100vw;
+}
+
+button{
+    margin: 1%;
+    width: 10em;
+    height: 2.5em;
+    border: none;
+    border-radius: 3px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+
+/*
+=======================================
+CREAR
+=======================================
+*/
+
+
+button[name="crear"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="crear"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+VOLVER
+=======================================
+*/
+
+button[name="volver"]{
+    background-color: var(--amarillo-modificar1);
+    color: var(--gris-0);
+}
+
+button[name="volver"]:hover{
+    background-color: var(--amarillo-modificar2);
+}
+
+/*
+=======================================
+SUBIR
+=======================================
+*/
+
+button[name="subir"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+    align-items: center;
+}
+
+button[name="subir"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+SALIR
+=======================================
+*/
+
+button[name="salir"]{
+    background-color: var(--rojo-falta1);
+    color: var(--gris-100);
+}
+
+button[name="salir"]:hover{
+    background-color: var(--rojo-falta2);
+}
+
+/*
+=======================================
+FALTA
+=======================================
+*/
+
+button[name="falta"]{
+    background-color: var(--rojo-falta1);
+    color: var(--gris-100);
+}
+
+button[name="falta"]:hover{
+    background-color: var(--rojo-falta2);
+}
+
+/*
+=======================================
+ASISTENCIA
+=======================================
+*/
+
+button[name="asistencia"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="asistencia"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+MODIFICAR
+=======================================
+*/
+
+button[name="modificar"]{
+    background-color: var(--amarillo-modificar1);
+    color: var(--gris-0);
+}
+
+button[name="modificar"]:hover{
+    background-color: var(--amarillo-modificar2);
+}
+
+/*
+=======================================
+ACCEDER
+=======================================
+*/
+
+button[name="acceder"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="acceder"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+GUARDAR
+=======================================
+*/
+
+button[name="guardar"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="guardar"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+MULTIPLE
+=======================================
+*/
+
+button[name="multiple"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="multiple"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+OBTENER FALTAS
+=======================================
+*/
+
+button[name="obtener_faltas"]{
+    background-color: var(--azul-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="obtener_faltas"]:hover{
+    background-color: var(--azul-restablecer2);
+}
+
+/*
+=======================================
+OBTENER ASISTENCIAS
+=======================================
+*/
+
+button[name="obtener_asistencias"]{
+    background-color: var(--azul-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="obtener_asistencias"]:hover{
+    background-color: var(--azul-restablecer2);
+}
+
+/*
+=======================================
+ACTUALIZAR
+=======================================
+*/
+
+button[name="actualizar"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="actualizar"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+ELIMINAR
+=======================================
+*/
+
+button[name="eliminar"]{
+    background-color: var(--rojo-falta1);
+    color: var(--gris-100);
+}
+
+button[name="eliminar"]:hover{
+    background-color: var(--rojo-falta2);
+}
+
+/*
+=======================================
+RESTABLECER
+=======================================
+*/
+
+button[name="restablecer"]{
+    background-color: var(--azul-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="restablecer"]:hover{
+    background-color: var(--azul-restablecer2);
+}
+
+/*
+=======================================
+ESTADISTICAS
+=======================================
+*/
+
+button[name="estadisticas"]{
+    background-color: var(--violeta1);
+    color: var(--gris-100);
+}
+
+button[name="estadisticas"]:hover{
+    background-color: var(--violeta2);
+}
+
+/*
+=======================================
+ESTADISTICAS TOTALES
+=======================================
+*/
+
+button[name="estadisticas_totales"]{
+    background-color: var(--azul-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="estadisticas_totales"]:hover{
+    background-color: var(--azul-restablecer2);
+}
+
+/*
+=======================================
+BUSCAR
+=======================================
+*/
+
+button[name="buscar"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="buscar"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+
+/*
+=======================================
+PLANTILLA
+=======================================
+*/
+
+button[name="plantilla"]{
+    background-color: var(--azul-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="plantilla"]:hover{
+    background-color: var(--azul-restablecer2);
+}
+
+/*
+=======================================
+INSTRUCCIONES
+=======================================
+*/
+
+button[name="instrucciones"]{
+    background-color: var(--azul-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="instrucciones"]:hover{
+    background-color: var(--azul-restablecer2);
+}
+
+/*
+=======================================
+RESTABLECER BASE
+=======================================
+*/
+
+button[name="restablecer_base"]{
+    background-color: var(--rojo-falta1);
+    color: var(--gris-100);
+}
+
+button[name="restablecer_base"]:hover{
+    background-color: var(--rojo-falta2);
+}
+
+/*
+=======================================
+ELIMINADOR
+=======================================
+*/
+
+button[name="listar_alumnos"]{
+    background-color: var(--violeta1);
+    color: var(--gris-100);
+}
+
+button[name="listar_alumnos"]:hover{
+    background-color: var(--violeta2);
+}
+
+/*
+=======================================
+ASISTENCIA MÚLTIPLE
+=======================================
+*/
+
+button[name="asisten_todos"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="asisten_todos"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+VER FALTAS
+=======================================
+*/
+
+button[name="ver_faltas"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="ver_faltas"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+VER ASISTENCIAS
+=======================================
+*/
+
+button[name="ver_asistencias"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="ver_asistencias"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+BUSCADOR
+=======================================
+*/
+
+button[name="buscador"]{
+    background-color: var(--azul-restablecer1);
+    color: var(--gris-100);
+    height: 3.5em;
+}
+
+button[name="buscador"]:hover{
+    background-color: var(--azul-restablecer2);
+}
+
+/*
+=======================================
+IMPRIMIR
+=======================================
+*/
+
+button[name="imprimir"]{
+    background-color: var(--violeta1);
+    color: var(--gris-100);
+}
+
+button[name="imprimir"]:hover{
+    background-color: var(--violeta2);
+}
+
+/*
+=======================================
+GANTT
+=======================================
+*/
+
+button[name="gantt"]{
+    background-color: var(--violeta1);
+    color: var(--gris-100);
+}
+
+button[name="gantt"]:hover{
+    background-color: var(--violeta2);
+}
+
+/*
+=======================================
+IMPRIMIR ESTADÍSTICAS
+=======================================
+*/
+
+button[name="imprimir_estadisticas"]{
+    background-color: var(--amarillo-modificar1);
+    color: var(--gris-0);
+}
+
+button[name="imprimir_estadisticas"]:hover{
+    background-color: var(--amarillo-modificar2);
+}
+
+/*
+=======================================
+CREAR USUARIO
+=======================================
+*/
+
+button[name="crear_usuarios"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="crear_usuarios"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+LISTAR USUARIOS
+=======================================
+*/
+
+button[name="listar_usuarios"]{
+    background-color: var(--violeta1);
+    color: var(--gris-100);
+}
+
+button[name="listar_usuarios"]:hover{
+    background-color: var(--violeta2);
+}
+
+/*
+=======================================
+LISTAR ACTIVIDADES
+=======================================
+*/
+
+button[name="listar_actividades"]{
+    background-color: var(--violeta1);
+    color: var(--gris-100);
+}
+
+button[name="listar_actividades"]:hover{
+    background-color: var(--violeta2);
+}
+
+/*
+=======================================
+CREAR ACTIVIDAD
+=======================================
+*/
+
+button[name="crear_actividad"]{
+    background-color: var(--cian-restablecer1);
+    color: var(--gris-100);
+}
+
+button[name="crear_actividad"]:hover{
+    background-color: var(--cian-restablecer2);
+}
+
+/*
+=======================================
+SWITCH ELIMINAR
+=======================================
+*/
+.celda_aviso{
+    display: flex;
+    justify-content: space-around;
+    gap: 5em;
+}
+.contenedor_switch{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+/* El switch - la caja alrededor del slider */
+.switch {
+  position: relative;
+  display: flex;
+  width: 6em;
+  height: 2em;
+}
+
+/* Escondemos el checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* El slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--rojo-slider1);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+/* Crea la bolita */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.5em;
+  width: 1.5em;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--gris-100);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--cian-restablecer1);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--cian-restablecer2);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(4em);
+  -ms-transform: translateX(4em);
+  transform: translateX(4em);
+}
+
+/* Slider redondeado */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+@media screen and (max-width:1000px) {
+    button{
+        margin: 1%;
+        min-width: 4em;
+        min-height: fit-content;
+        padding: 1%;
+        font-size: 8pt;
+        border: none;
+        border-radius: 3px;
+    }
+}

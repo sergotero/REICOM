@@ -95,12 +95,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Sergio Otero">
-    <link rel="shortcut icon" href="./../images/favicon_blanco.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./../assets/images/favicon_blanco.ico" type="image/x-icon">
     <!-- Estilos propios -->
-    <link rel="stylesheet" href="./../styles/general.css">
-    <link rel="stylesheet" href="./../styles/avisos.css">
-    <link rel="stylesheet" href="./../styles/botones.css">
-    <link rel="stylesheet" href="./../styles/forms.css">
+    <link rel="stylesheet" href="./../assets/styles/general.css">
+    <link rel="stylesheet" href="./../assets/styles/avisos.css">
+    <link rel="stylesheet" href="./../assets/styles/botones.css">
+    <link rel="stylesheet" href="./../assets/styles/forms.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -246,5 +246,5 @@
         </div>
     </main>
 </body>
-<script src="./../js/form_eliminar_alumnos.js"></script>
+<script src="./../assets/js/form_eliminar_alumnos.js"></script>
 </html>

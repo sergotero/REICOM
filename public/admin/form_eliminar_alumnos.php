@@ -96,12 +96,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Sergio Otero">
-    <link rel="shortcut icon" href="./../images/favicon_blanco.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./../assets/images/favicon_blanco.ico" type="image/x-icon">
     <!-- Estilos propios -->
-    <link rel="stylesheet" href="./../styles/general.css">
-    <link rel="stylesheet" href="./../styles/avisos.css">
-    <link rel="stylesheet" href="./../styles/botones.css">
-    <link rel="stylesheet" href="./../styles/forms.css">
+    <link rel="stylesheet" href="./../assets/styles/general.css">
+    <link rel="stylesheet" href="./../assets/styles/avisos.css">
+    <link rel="stylesheet" href="./../assets/styles/botones.css">
+    <link rel="stylesheet" href="./../assets/styles/forms.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -208,53 +208,18 @@
                             <th>Apellidos y nombre</th>
                             <th>Curso</th>
                             <th>Grupo</th>
-                            <th>Comedor</th>
                             <th>Acciones</th>
-
                         </thead>
                         <tbody>
                     MARCA;
 
                     foreach ($alumnado as $alumno) {
-                        //Recuperamos las faltas y las asistencias para cada alumno
-                        $faltas = $gestor->recuperaFaltas($bbdd, $alumno);
-                        $asistencias = $gestor->recuperaAsistencias($bbdd, $alumno);
-                        //Las convertimos a objetos Falta y a Asistencia
-                        $faltas = Falta::multicast($faltas);
-                        $asistencias = Asistencia::multicast($asistencias);
-                        //Las configuramos en Alumno si el array no está vacío
-                        if(count($faltas)>0){
-                            $alumno->setFaltas($faltas);
-                        }
-                        if(count($asistencias)>0){
-                            $alumno->setAsistencias($asistencias);
-                        }
-
-                        //Comprobamos si asiste o no
-                        $asistencia = '';
-                        //Comprobamos que el array sea distinto a null
-                        if($alumno->getFaltas() != null){
-                        //Comprobamos que la fecha sea igual a la de hoy
-                            if($alumno->getFalta($hoy) == $hoy){
-                                //Si coincide, hay un registro de una falta para el día en curso.
-                                $asistencia .= "<i class='fa-solid fa-xmark'></i>";
-                            }
-                        }
-                        if($alumno->getAsistencias() != null){
-                        //Comprobamos que la fecha sea igual a la de hoy
-                            if($alumno->getAsistencia($hoy) == $hoy){
-                                //Si coincide, hay un registro de una falta para el día en curso.
-                                $asistencia .= "<i class='fa-solid fa-check'></i>";
-                            }
-                        }
-                        
                         echo <<<MARCA
                             <tr>
                                 <td hidden>{$alumno->getid()}</td>
                                 <td>{$alumno->getApellido1()} {$alumno->getApellido2()}, {$alumno->getNombre()}</td>
                                 <td>{$alumno->getCurso()}</td>
                                 <td>{$alumno->getGrupo()}</td>
-                                <td class='asistencia' title='Asiste el día {$hoy_formato}'>{$asistencia}</td>
                                 <td class='acciones'>
                                     <form action='{$accion}' method='POST'>
                                         <button type='submit' name='eliminar' value='{$alumno->getid()}' title='Elimina los datos del alumno'>Eliminar</button>
@@ -276,5 +241,5 @@
         </div>
     </main>
 </body>
-<script src="./../js/form_eliminar_alumnos.js"></script>
+<script src="./../assets/js/form_eliminar_alumnos.js"></script>
 </html>

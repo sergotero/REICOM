@@ -81,12 +81,12 @@ if(isset($_POST['crear_usuarios'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Sergio Otero">
-    <link rel="shortcut icon" href="./../images/favicon_blanco.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./../assets/images/favicon_blanco.ico" type="image/x-icon">
     <!-- Estilos propios -->
-    <link rel="stylesheet" href="./../styles/general.css">
-    <link rel="stylesheet" href="./../styles/avisos.css">
-    <link rel="stylesheet" href="./../styles/botones.css">
-    <link rel="stylesheet" href="./../styles/forms.css">
+    <link rel="stylesheet" href="./../assets/styles/general.css">
+    <link rel="stylesheet" href="./../assets/styles/avisos.css">
+    <link rel="stylesheet" href="./../assets/styles/botones.css">
+    <link rel="stylesheet" href="./../assets/styles/forms.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,9 +175,10 @@ if(isset($_POST['crear_usuarios'])){
                 <div class="inputgroup">
                     <label for="rol">Rol</label>
                     <select name="rol" id="rol" required>
-                        <option value="null" hidden selected>- -</option>
-                        <option value="Administrador">Administrador</option>
-                        <option value="Profesor">Profesor</option>
+                        <!-- Estas opciones quedan deshabilitadas hasta que se introduzca la vista profesor -->
+                        <!-- <option value="null" hidden selected>- -</option> -->
+                        <option value="Administrador" selected>Administrador</option>
+                        <!-- <option value="Profesor">Profesor</option> -->
                     </select>
                 </div>
                 <div class="inputgroup">
@@ -197,5 +198,5 @@ if(isset($_POST['crear_usuarios'])){
         </form>
     </main>
 </body>
-<script src="./../js/form_acceso.js"></script>
+<script src="./../assets/js/form_acceso.js"></script>
 </html>

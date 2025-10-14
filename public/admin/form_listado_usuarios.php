@@ -77,7 +77,7 @@
             $usuarios = Usuario::multicast($resultado);
         }
         //Modificar esta excepción
-    } catch (CompruebaUsuariosException $e) {
+    } catch (CompruebaUsuarioException $e) {
         $errores[] = [
             'codigo'   => $e->getCode(),
             'mensaje'  => $e->getMessage(),
@@ -95,12 +95,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Sergio Otero">
-    <link rel="shortcut icon" href="./../images/favicon_blanco.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./../assets/images/favicon_blanco.ico" type="image/x-icon">
     <!-- Estilos propios -->
-    <link rel="stylesheet" href="./../styles/general.css">
-    <link rel="stylesheet" href="./../styles/avisos.css">
-    <link rel="stylesheet" href="./../styles/botones.css">
-    <link rel="stylesheet" href="./../styles/forms.css">
+    <link rel="stylesheet" href="./../assets/styles/general.css">
+    <link rel="stylesheet" href="./../assets/styles/avisos.css">
+    <link rel="stylesheet" href="./../assets/styles/botones.css">
+    <link rel="stylesheet" href="./../assets/styles/forms.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,7 +114,8 @@
         <div class="cabecera">
             <div class="logo">
                 <p><a href="./form_listado_alumnos.php">REICOM</a></p>
-            </div>            <div class="gestion_usuarios">
+            </div>
+            <div class="gestion_usuarios">
                 <form name="gestion_usuarios" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <button type="submit" name="crear_usuarios">Crear usuarios</button>
                 </form>
@@ -173,8 +174,8 @@
                 <!-- En el select, el value no empieza en 0 porque hay una columna oculta en la tabla que también se recorre mediante el JavaScript -->
                 <select name="filtros" id="filtros">
                     <option value="1">Apellidos y nombre</option>
-                    <option value="2">Curso</option>
-                    <option value="3">Grupo</option>
+                    <option value="2">Email</option>
+                    <option value="3">Rol</option>
                 </select>
                 <input type="text" name="filtrador" id="filtrador" placeholder="Filtrar...">
             </div>
@@ -244,5 +245,5 @@
         </div>
     </main>
 </body>
-<script src="./../js/form_listado_usuarios.js"></script>
+<script src="./../assets/js/form_listado_usuarios.js"></script>
 </html>

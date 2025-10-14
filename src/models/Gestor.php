@@ -1,19 +1,32 @@
 <?php
-
+/**
+ * Clase Gestor
+ * 
+ * Se trata de una clase que gestiona CRUD con la base de datos.
+ * 
+ * @author Sergio Otero
+ * @version 1.0.0
+ * @since 1.0.0
+ */
 class Gestor{
 
+    /**
+     * Constructor de la clase Gestor.
+     */
     public function __construct(){
     }
 
-    //FUNCIONES DE COMPROBACIÓN    
     /**
-     * compruebaAlumno
+     * Comprueba si un alumno está registrado en la base de datos.
+     * 
+     * Este método sólo realiza la comprobación con los datos contenidos en la tabla alumnos de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
-     * @return mixed
+     * @throws ConsultaAlumnosException
+     * @return bool
      */
-    public function compruebaAlumno(ConexionBBDD $bbdd, Alumno $alumno): mixed{
+    public function compruebaAlumno(ConexionBBDD $bbdd, Alumno $alumno): bool{
         try {
             $conexion = Conexion::getInstancia($bbdd)->getConexion();
             $consulta = $conexion->prepare("SELECT * FROM alumnos WHERE nombre LIKE :nombre AND apellido1 LIKE :apellido1 AND apellido2 LIKE :apellido2 AND f_nacimiento = :f_nacimiento");
@@ -33,16 +46,17 @@ class Gestor{
         } catch (PDOException $e) {
             throw new ConsultaAlumnosException($e);
         }
-        return $resultado;
+        return ($resultado)?true:false;
     }
 
-    //FUNCIONES DE RECUPERACIÓN DE DATOS
-    
     /**
-     * recuperaAlumno
+     * Recupera a un alumno de la base de datos.
+     * 
+     * Este método recupera de la base de datos la información necesaria para construir un objeto Alumno completo (con excepción de las faltas y asistencias). Retorna un objeto StdClass o un false;
      *
      * @param  ConexionBBDD $bbdd
      * @param  int $id_alumno
+     * @throws ConsultaAlumnosException
      * @return mixed
      */
     public function recuperaAlumno(ConexionBBDD $bbdd, int $id_alumno): mixed{
@@ -60,9 +74,12 @@ class Gestor{
     }
 
     /**
-     * recuperaAlumnos
+     * Recupera a todos los alumnos de la base de datos.
+     * 
+     * Este método recupera de la base de datos la información necesaria de cada alumno para construir un objeto Alumno completo (con excepción de las faltas, asistencias y actividades). Retorna un StdClass[] o false.
      *
      * @param  ConexionBBDD $bbdd
+     * @throws ConsultaAlumnosException
      * @return mixed
      */
     public function recuperaAlumnos(ConexionBBDD $bbdd): mixed{
@@ -79,7 +96,9 @@ class Gestor{
     }
     
     /**
-     * recuperaAlumnosCurso
+     * Recupera a todos los alumnos de un curso de la base de datos.
+     * 
+     * Este método recupera de la base de datos la información necesaria de cada alumno para construir un objeto Alumno completo (con excepción de las faltas, asistencias y actividades), filtrados por curso.
      *
      * @param  ConexionBBDD $bbdd
      * @param  string $curso
@@ -158,7 +177,7 @@ class Gestor{
             $consulta->execute();
             $resultado = $consulta->fetch(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
-            throw new ConsultaUsuariosException($e);
+            throw new ConsultaUsuarioException($e);
         }
         return $resultado;
     }
@@ -177,7 +196,7 @@ class Gestor{
             $resultado = $consulta->fetchAll(PDO::FETCH_OBJ);
             $conexion = Conexion::getInstancia($bbdd)->cerrarConexion();
         } catch (PDOException $e) {
-            throw new ConsultaUsuariosException($e);
+            throw new ConsultaUsuarioException($e);
         }
         return $resultado;
     }
