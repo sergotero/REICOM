@@ -41,35 +41,6 @@
         die();
     }
 
-    //BOTON ELIMINAR USUARIO 
-    if(isset($_POST['eliminar'])){
-        //Recuperamos los datos
-        $id_actividad = $_POST['eliminar'];
-
-        try {
-            //Recuperamos al usuario en cuestión
-            $actividad = $gestor->recuperaActividad($bbdd, $id_actividad);
-            if($actividad){
-                $actividad = Actividad::cast($actividad);
-            }
-            //Eliminamos al alumno de la base
-            $gestor->eliminaActividad($bbdd, $actividad);
-
-        } catch (EliminaActividadException $e) {
-            $errores[] = [
-                'codigo'   => $e->getCode(),
-                'mensaje'  => $e->getMessage(),
-                'archivo'  => $e->getFile(),
-                'linea'    => $e->getLine(),
-            ];
-        }
-        
-        $exitos[] = [
-            'codigo' => CodigosExito::ACTIVIDAD_ELIMINAR,
-            'mensaje' => 'Se ha eliminado la actividad con éxito'
-        ];
-    }
-
     //Consulta para generar la tabla
     try {
         $actividades = $gestor->recuperaActividades($bbdd);
@@ -225,9 +196,9 @@
                                 <td>{$dias}</td>
                                 <td>{$ubicacion}</td>
                                 <td class="acciones">
-                                    <form name='acciones_usuario' action='{$accion}' method='POST'>
+                                    <form name='acciones_actividades' action='{$accion}' method='POST'>
                                         <button type='submit' name='modificar' value='{$actividad->getId()}' title='Permite modificar los datos de la actividad'>Modificar</button>    
-                                        <button type='submit' name='eliminar' value='{$actividad->getId()}' title='Elimina la actividad de la base de datos'>Eliminar</button>
+                                        <button type='button' name='eliminar' value='{$actividad->getId()}' title='Elimina la actividad de la base de datos'>Eliminar</button>
                                     </form>
                                 </td>
                             </tr>
@@ -246,5 +217,5 @@
         </div>
     </main>
 </body>
-<script src="./../assets/js/form_eliminar_alumnos.js"></script>
+<script src="./../assets/js/form_listado_actividades.js"></script>
 </html>

@@ -92,157 +92,6 @@
         }
     }
 
-    //BOTON ASISTENCIA 
-    if(isset($_POST['asistencia'])){
-        //Recuperamos los datos
-        $id_alumno = $_POST['asistencia'];
-
-        try {
-            //Recuperamos al alumno en cuestión
-            $resultado = $gestor->recuperaAlumno($bbdd, $id_alumno);
-            
-            if($resultado){
-                //Hacemos un casting
-                $alumno = Alumno::cast($resultado);
-            }
-            
-            //Generamos una nueva asistencia
-            $asistencia = new Asistencia($hoy);
-            //La metemos en el alumno
-            $alumno->setAsistencia($asistencia);
-            //Insertamos la asistencia en la base
-            $gestor->insertaAsistencia($bbdd, $alumno);
-
-            //Renovamos los datos del alumno en el array de $_SESSION
-            foreach($_SESSION['alumnos'] as $id => $al){
-                if($id == $alumno->getId()){
-                    $_SESSION['alumnos'][$id] = $alumno;
-                }
-            }
-
-        } catch (InsertaAsistenciaException $e) {
-            $errores[] = [
-                'codigo'   => $e->getCode(),
-                'mensaje'  => $e->getMessage(),
-                'archivo'  => $e->getFile(),
-                'linea'    => $e->getLine(),
-            ];
-        }
-        
-        $exitos[] = [
-            'codigo' => CodigosExito::ASISTENCIA_INSERTAR,
-            'mensaje' => 'Se ha guardado la asistencia con éxito'
-        ];
-    }
-
-    //BOTON FALTA 
-    if(isset($_POST['falta'])){
-        //Recuperamos los datos
-        $id_alumno = $_POST['falta'];
-
-        try {
-            //Recuperamos al alumno en cuestión
-            $resultado = $gestor->recuperaAlumno($bbdd, $id_alumno);
-            
-            if($resultado){
-                //Hacemos un casting
-                $alumno = Alumno::cast($resultado);
-            }
-            
-            //Generamos una nueva asistencia
-            $falta = new Falta($hoy, null, null);
-            //La metemos en el alumno
-            $alumno->setFalta($falta);
-            //Insertamos la asistencia en la base
-            $gestor->insertaFalta($bbdd, $alumno);
-
-            //Renovamos los datos del alumno en el array de $_SESSION
-            foreach($_SESSION['alumnos'] as $id => $al){
-                if($id == $alumno->getId()){
-                    $_SESSION['alumnos'][$id] = $alumno;
-                }
-            }
-
-        } catch (InsertaFaltaException $e) {
-            $errores[] = [
-                'codigo'   => $e->getCode(),
-                'mensaje'  => $e->getMessage(),
-                'archivo'  => $e->getFile(),
-                'linea'    => $e->getLine(),
-            ];
-        }
-        
-        $exitos[] = [
-            'codigo' => CodigosExito::FALTA_INSERTAR,
-            'mensaje' => 'Se ha guardado la falta con éxito'
-        ];
-    }
-
-    //BOTON RESTABLECER
-    if(isset($_POST['restablecer'])){
-        
-        $id_alumno = $_POST['restablecer'];
-        
-        //Se recupera el alumno y se hace un casting
-        $alumno = $gestor->recuperaAlumno($bbdd, $id_alumno);
-        $alumno = Alumno::cast($alumno);
-
-        //Recuperamos las faltas
-        $faltas = $gestor->recuperaFaltasHoy($bbdd, $alumno);
-        $asistencias = $gestor->recuperaAsistenciasHoy($bbdd, $alumno);
-        
-        //Si hay faltas, hacemos un casting, y las adjudicamos a Alumno para proceder a borrarlas 
-        if($faltas){
-            $faltas = Falta::multicast($faltas);
-            $alumno->setFaltas($faltas);
-            try {
-                $resultado = $gestor->eliminaFaltas($bbdd, $alumno);
-                if($resultado){
-                    $exitos[] = [
-                        'codigo' => CodigosExito::FALTA_ELIMINAR,
-                        'mensaje' => 'La falta se ha eliminado con éxito'
-                    ];
-                }
-            } catch (EliminaFaltaException $e) {
-                $errores[] = [
-                    'codigo'   => $e->getCode(),
-                    'mensaje'  => $e->getMessage(),
-                    'archivo'  => $e->getFile(),
-                    'linea'    => $e->getLine(),
-                ];
-            }
-        }
-        //Si hay asistencias, hacemos un casting, y las adjudicamos a Alumno para proceder a borrarlas
-        if($asistencias){
-            $asistencias = Asistencia::multicast($asistencias);
-            $alumno->setAsistencias($asistencias);
-            try {
-                $resultado = $gestor->eliminaAsistencias($bbdd, $alumno);
-                if($resultado){
-                    $exitos[] = [
-                        'codigo' => CodigosExito::ASISTENCIA_ELIMINAR,
-                        'mensaje' => 'La asistencia se ha eliminado con éxito'
-                    ];
-                }
-            } catch (EliminaAsistenciaException $e) {
-                $errores[] = [
-                    'codigo'   => $e->getCode(),
-                    'mensaje'  => $e->getMessage(),
-                    'archivo'  => $e->getFile(),
-                    'linea'    => $e->getLine(),
-                ];
-            }
-        }
-        
-        //Renovamos los datos del alumno en el array de $_SESSION
-        foreach($_SESSION['alumnos'] as $id => $al){
-            if($id == $alumno->getId()){
-                $_SESSION['alumnos'][$id] = $alumno;
-            }
-        }
-        
-    }
-
     if(isset($_POST['modificar'])){
         $id_alumno = $_POST['modificar'];
         $_SESSION['id_alumno'] = $id_alumno;
@@ -298,10 +147,10 @@
         <div class="cabecera">
             <div class="logo">
                 <p><a href="./form_listado_alumnos.php">REICOM</a></p>
-            </div>            <div class="gestion_usuarios">
+            </div>
+            <div class="gestion_usuarios">
                 
             </div>
-            <!-- En este apartado se mostrará la información de sesión -->
             <?php
                 //Recuperamos los datos del usuario
                 if(isset($_SESSION['usuario'])){
@@ -414,9 +263,9 @@
                                 <td>{$alumno->getApellido1()} {$alumno->getApellido2()}, {$alumno->getNombre()}</td>
                                 <td class='asistencia' title='Asiste el día {$hoy_formato}'>$contenido</td>
                                 <td class='acciones'>
-                                    <button type='submit' name='asistencia' value='{$alumno->getid()}'>Asiste</button>
-                                    <button type='submit' name='falta' value='{$alumno->getid()}'>Falta</button>
-                                    <button type='submit' name='restablecer' value='{$alumno->getid()}' title='Elimina la asistencia/falta del alumno del día en curso'>Elimina A/F</button>
+                                    <button type='button' name='asistencia' value='{$alumno->getid()}'>Asiste</button>
+                                    <button type='button' name='falta' value='{$alumno->getid()}'>Falta</button>
+                                    <button type='button' name='restablecer' value='{$alumno->getid()}' title='Elimina la asistencia/falta del alumno del día en curso'>Borrar A/F</button>
                                     <button type='submit' name='modificar' value='{$alumno->getid()}' title='Permite modificar los datos del alumno'>Modificar</button>
                                 </td>
                             </tr>

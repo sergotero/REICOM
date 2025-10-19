@@ -118,11 +118,11 @@
                 <p><a href="./form_listado_alumnos.php">REICOM</a></p>
             </div>
             <div class="gestion_usuarios">
-                <form name='opciones' action='{$accion}' method='POST'>
+                <!-- BOTON PARA REESTABLECER EL SISTEMA -->
+                <!-- <form name='opciones' action='{$accion}' method='POST'>
                     <button type='submit' name='restablecer_base' id='restablecer_base' title='Elimina todos los alumnos (junto con faltas y asistencias) y actividades de la base y establece los identificadores a cero'>Restablecer BBDD</button>
-                </form>
+                </form> -->
             </div>
-            <!-- En este apartado se mostrará la información de sesión -->
             <?php
                 //Recuperamos los datos del usuario
                 if(isset($_SESSION['usuario'])){
@@ -222,7 +222,7 @@
                                 <td>{$alumno->getGrupo()}</td>
                                 <td class='acciones'>
                                     <form action='{$accion}' method='POST'>
-                                        <button type='submit' name='eliminar' value='{$alumno->getid()}' title='Elimina los datos del alumno'>Eliminar</button>
+                                        <button type='button' name='eliminar' value='{$alumno->getid()}' title='Elimina los datos del alumno'>Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

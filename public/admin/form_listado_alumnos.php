@@ -61,43 +61,6 @@
         header('Location: ./form_estadistica_alumnos.php');
         die();
     }
-    
-    //BOTON ASISTENCIA 
-    if(isset($_POST['asistencia'])){
-        //Recuperamos los datos
-        $id_alumno = $_POST['asistencia'];
-        $f_asistencia = $hoy;
-
-        try {
-            //Recuperamos al alumno en cuestión
-            $resultado = $gestor->recuperaAlumno($bbdd, $id_alumno);
-            
-            if($resultado){
-                //Hacemos un casting
-                $alumno = Alumno::cast($resultado);
-            }
-            
-            //Generamos una nueva asistencia
-            $asistencia = new Asistencia($f_asistencia);
-            //La metemos en el alumno
-            $alumno->setAsistencia($asistencia);
-            //Insertamos la asistencia en la base
-            $gestor->insertaAsistencia($bbdd, $alumno);
-
-        } catch (InsertaAsistenciaException $e) {
-            $errores[] = [
-                'codigo'   => $e->getCode(),
-                'mensaje'  => $e->getMessage(),
-                'archivo'  => $e->getFile(),
-                'linea'    => $e->getLine(),
-            ];
-        }
-        
-        $exitos[] = [
-            'codigo' => CodigosExito::ASISTENCIA_INSERTAR,
-            'mensaje' => 'Se ha guardado la asistencia con éxito'
-        ];
-    }
 
     //BOTÓN ASISTENCIA MÚLTIPLE
     if(isset($_POST['asisten_todos'])){
@@ -145,42 +108,6 @@
         }
     }
 
-    //BOTON FALTA 
-    if(isset($_POST['falta'])){
-        //Recuperamos los datos
-        $id_alumno = $_POST['falta'];
-
-        try {
-            //Recuperamos al alumno en cuestión
-            $resultado = $gestor->recuperaAlumno($bbdd, $id_alumno);
-            
-            if($resultado){
-                //Hacemos un casting
-                $alumno = Alumno::cast($resultado);
-            }
-            
-            //Generamos una nueva asistencia
-            $falta = new Falta($hoy, null, null);
-            //La metemos en el alumno
-            $alumno->setFalta($falta);
-            //Insertamos la asistencia en la base
-            $gestor->insertaFalta($bbdd, $alumno);
-
-        } catch (InsertaFaltaException $e) {
-            $errores[] = [
-                'codigo'   => $e->getCode(),
-                'mensaje'  => $e->getMessage(),
-                'archivo'  => $e->getFile(),
-                'linea'    => $e->getLine(),
-            ];
-        }
-        
-        $exitos[] = [
-            'codigo' => CodigosExito::FALTA_INSERTAR,
-            'mensaje' => 'Se ha guardado la falta con éxito'
-        ];
-    }
-
     //BOTON BUSCADOR
     if(isset($_POST['buscador'])){
         if(isset($_SESSION['alumnos'])){
@@ -196,63 +123,6 @@
     if(isset($_POST['gantt'])){
         header('Location: ./form_gantt.php');
         die();
-    }
-
-    //BOTON RESTABLECER
-    if(isset($_POST['restablecer'])){
-        
-        $id_alumno = $_POST['restablecer'];
-        
-        //Se recupera el alumno y se hace un casting
-        $alumno = $gestor->recuperaAlumno($bbdd, $id_alumno);
-        $alumno = Alumno::cast($alumno);
-
-        //Recuperamos las faltas
-        $faltas = $gestor->recuperaFaltasHoy($bbdd, $alumno);
-        $asistencias = $gestor->recuperaAsistenciasHoy($bbdd, $alumno);
-        
-        //Si hay faltas, hacemos un casting, y las adjudicamos a Alumno para proceder a borrarlas 
-        if($faltas){
-            $faltas = Falta::multicast($faltas);
-            $alumno->setFaltas($faltas);
-            try {
-                $resultado = $gestor->eliminaFaltas($bbdd, $alumno);
-                if($resultado){
-                    $exitos[] = [
-                        'codigo' => CodigosExito::FALTA_ELIMINAR,
-                        'mensaje' => 'La falta se ha eliminado con éxito'
-                    ];
-                }
-            } catch (EliminaFaltaException $e) {
-                $errores[] = [
-                    'codigo'   => $e->getCode(),
-                    'mensaje'  => $e->getMessage(),
-                    'archivo'  => $e->getFile(),
-                    'linea'    => $e->getLine(),
-                ];
-            }
-        }
-        //Si hay asistencias, hacemos un casting, y las adjudicamos a Alumno para proceder a borrarlas
-        if($asistencias){
-            $asistencias = Asistencia::multicast($asistencias);
-            $alumno->setAsistencias($asistencias);
-            try {
-                $resultado = $gestor->eliminaAsistencias($bbdd, $alumno);
-                if($resultado){
-                    $exitos[] = [
-                        'codigo' => CodigosExito::ASISTENCIA_ELIMINAR,
-                        'mensaje' => 'La asistencia se ha eliminado con éxito'
-                    ];
-                }
-            } catch (EliminaAsistenciaException $e) {
-                $errores[] = [
-                    'codigo'   => $e->getCode(),
-                    'mensaje'  => $e->getMessage(),
-                    'archivo'  => $e->getFile(),
-                    'linea'    => $e->getLine(),
-                ];
-            }
-        }
     }
 
     //BOTON ALUMNOS (BORRAR)
@@ -448,13 +318,13 @@
                                 <td class='asistencia' title='Asiste el día {$hoy_formato}'>{$asistencia}</td>
                                 <td class='acciones'>
                                     <form action='{$accion}' method='POST'>
-                                        <button type='submit' name='asistencia' value='{$alumno->getid()}' title='Marca la asistencia del alumno al comedor en el día en curso'>Asiste</button>
+                                        <button type='button' name='asistencia' value='{$alumno->getid()}' title='Marca la asistencia del alumno al comedor en el día en curso'>Asiste</button>
                                     </form>
                                     <form action='{$accion}' method='POST'>
-                                        <button type='submit' name='falta' value='{$alumno->getid()}' title='Marca la falta del alumno al comedor en el día en curso'>Falta</button>
+                                        <button type='button' name='falta' value='{$alumno->getid()}' title='Marca la falta del alumno al comedor en el día en curso'>Falta</button>
                                     </form>
                                     <form action='{$accion}' method='POST'>
-                                        <button type='submit' name='restablecer' value='{$alumno->getid()}' title='Elimina la asistencia/falta del alumno del día en curso'>Borrar A/F</button>
+                                        <button type='button' name='restablecer' value='{$alumno->getid()}' title='Elimina la asistencia/falta del alumno del día en curso'>Borrar A/F</button>
                                     </form>
                                     <form action='form_estadistica_alumnos.php' method='POST'>
                                     <button type='submit' name='estadisticas' value='{$alumno->getid()}' title='Muestra las asistencias y faltas del alumno'>Estadísticas</button>

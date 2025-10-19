@@ -31,6 +31,20 @@ window.onload = () =>{
         ul.insertBefore(li, actual);
     }
 
+    //Este código genera pone a la escucha a los botones falta, asistencia y borrar
+    const celdas = document.getElementsByClassName("acciones");
+
+    for (let i = 0; i < celdas.length; i++) {
+        
+        const celda = celdas[i];
+        const asiste = celda.children[0];
+        asiste.addEventListener("click", (evento) => creaAsistencia(evento));
+        const falta = celda.children[1];
+        falta.addEventListener("click", (evento) => creaFalta(evento));
+        const borra = celda.children[2];
+        borra.addEventListener(("click"), (evento) => restablece(evento));
+    }
+
 
     //BUSCADOR DE PROFESOR
     // let botones_asistencia = document.getElementsByName('asistencia');
@@ -151,4 +165,152 @@ function deshabilitarBotones(){
             
         }
     }
+}
+
+function creaAsistencia(evento){
+    //Obtenemos el id del alumno
+    const id_alumno = evento.target.value;
+
+    //Creamos un objeto que contiene el nombre del método que vamos a usar y los parámetros.
+    const datos = {
+        metodo: "crearAsistencia",
+        param: id_alumno
+    };
+
+    fetch("./../api_fetch/fetch.php", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(datos)
+        }
+    )
+    .then(response => {
+        
+        if(!response.ok){
+            throw new Error(`Error HTTP ${response.status}`);
+        }
+        return response.json();
+
+    })
+    .then(data => {
+        if(data["resultado"] === true){
+            const contenido = "<i class='fa-solid fa-check'></i>";
+            const botonAsistencia = evento.target;
+            const row = botonAsistencia.closest("tr");
+            const tdComedor = row.children[2];
+            tdComedor.innerHTML = contenido;
+            deshabilitarBotones();
+        }
+
+    })
+    .catch(error => {
+        console.error(error);
+    })
+    
+}
+
+
+function creaFalta(evento){
+    //Obtenemos el id del alumno
+    const id_alumno = evento.target.value;
+
+    //Creamos un objeto que contiene el nombre del método que vamos a usar y los parámetros.
+    const datos = {
+        metodo: "crearFalta",
+        param: id_alumno
+    };
+
+    fetch("./../api_fetch/fetch.php", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(datos)
+        }
+    )
+    .then(response => {
+        
+        if(!response.ok){
+            throw new Error(`Error HTTP ${response.status}`);
+        }
+        return response.json();
+
+    })
+    .then(data => {
+        if(data["resultado"] === true){
+            const contenido = "<i class='fa-solid fa-xmark'></i>";
+            const botonFalta = evento.target;
+            const row = botonFalta.closest("tr");
+            const tdComedor = row.children[2];
+            tdComedor.innerHTML = contenido;
+            deshabilitarBotones();
+        }
+
+    })
+    .catch(error => {
+        console.error(error);
+    })
+    
+}
+
+
+function restablece(evento){
+    //Obtenemos el id del alumno
+    const id_alumno = evento.target.value;
+
+    //Creamos un objeto que contiene el nombre del método que vamos a usar y los parámetros.
+    const datos = {
+        metodo: "borrarAsistenciaFalta",
+        param: id_alumno
+    };
+
+    fetch("./../api_fetch/fetch.php", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(datos)
+        }
+    )
+    .then(response => {
+        
+        if(!response.ok){
+            throw new Error(`Error HTTP ${response.status}`);
+        }
+        return response.json();
+
+    })
+    .then(data => {
+        if(data[0]["resultado"] === true){
+            const botonFalta = evento.target;
+            const row = botonFalta.closest("tr");
+            const tdComedor = row.children[2];
+            tdComedor.innerHTML = "";
+            rehabilitarBotones(evento);
+        }
+
+    })
+    .catch(error => {
+        console.error(error);
+    })
+    
+}
+
+function rehabilitarBotones(evento){
+    const borrar = evento.target;
+    const row = borrar.closest("tr");
+    const asiste = row.children[3].children[0];
+    console.log(asiste);
+    
+    const falta = row.children[3].children[1];
+    console.log(falta);
+    
+
+
+    //Botón ASISTIR
+    asiste.removeAttribute("disabled");
+    asiste.style.backgroundColor = "#44bd8d";
+    asiste.style.color = "#ffffffff";
+    asiste.style.cursor = "pointer";
+    //BOTON FALTA
+    falta.removeAttribute("disabled");
+    falta.style.backgroundColor = "#b1304a";
+    falta.style.color = "#ffffffff";
+    falta.style.cursor = "pointer";
+
 }

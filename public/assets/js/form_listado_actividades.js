@@ -1,20 +1,23 @@
 window.onload = () =>{
-    document.getElementById('volver').addEventListener('click', retornar);
     document.getElementById('filtrador').addEventListener('keyup', filtrarTabla);
+    document.getElementById('volver').addEventListener('click', retornar);
     document.getElementById('activar').addEventListener('click', deshabilitarBotones);
-
-    const botones = document.getElementsByName("eliminar");
-    for (let i = 0; i < botones.length; i++) {
-        const boton = botones[i];
-        boton.addEventListener('click', (evento) => {eliminaUsuario(evento)})
-    }
     
+    //Código que pone a la escucha los botones de eliminar
+    const celdas = document.getElementsByClassName("acciones");
+    for (let i = 0; i < celdas.length; i++) {
+        const celda = celdas[i];
+        const boton = celda.children[0].children[1];
+        boton.addEventListener('click', (evento) => eliminaActividad(evento));
+    }
+
     deshabilitarBotones();
     eliminaAvisos();
-
 }
 
 function retornar() {
+    console.log(this);
+    
     window.location = "./form_listado_alumnos.php";
 }
 
@@ -37,9 +40,8 @@ function filtrarTabla() {
     let texto = normalizar(input.value);
 
     // Capturamos la tabla
-    const tabla = document.getElementById("listado_usuarios");
+    const tabla = document.getElementById("listado");
     const filas = tabla.getElementsByTagName("tr");
-    
 
     // Recorremos filas desde la 2 (evitamos cabecera)
     for (let i = 2; i < filas.length; i++) {
@@ -62,42 +64,79 @@ function filtrarTabla() {
 function deshabilitarBotones(){
     //Seleccionamos todas las celdas de la columna "Acciones". Nos devuelve un HTMLCollection
     let acciones = document.getElementsByClassName('acciones');
+    
     //Obtenemos el valor (boolean) del checkbox
     let activar = document.getElementById('activar').checked;
+    // let botonRestablecer = document.getElementById('restablecer_base');
+    
+    //Obtenemos el pathname
+    let path = window.location.pathname;
+    
+    if(path.endsWith('form_listado_actividades.php')){
 
-    //Por cada elemento de la colección hacemos lo siguiente
-    for (let celda of acciones) {
-        //Seleccionamos el texto de las celdas
-        let botonEliminar = celda.children[0].children[1];
-        
-        if(activar){
-            botonEliminar.removeAttribute("disabled");
-            botonEliminar.style.backgroundColor = "#9d263e";
-            botonEliminar.style.color = "#FFFFFF";
-            botonEliminar.style.cursor = "pointer";
-        } else{
-            botonEliminar.setAttribute("disabled", true);
-            botonEliminar.style.backgroundColor = "#D7D7D7";
-            botonEliminar.style.color = "#363636";
-            botonEliminar.style.cursor = "default";
+        //Por cada elemento de la colección hacemos lo siguiente
+        for (const celda of acciones) {
+            //Seleccionamos el texto de las celdas
+            const botonEliminar = celda.children[0].children[1];
+            
+            if(activar){
+                botonEliminar.removeAttribute("disabled");
+                botonEliminar.style.backgroundColor = "#9d263e";
+                botonEliminar.style.color = "#FFFFFF";
+                botonEliminar.style.cursor = "pointer";                
+            } else{
+                botonEliminar.setAttribute("disabled", true);
+                botonEliminar.style.backgroundColor = "#D7D7D7";
+                botonEliminar.style.color = "#363636";
+                botonEliminar.style.cursor = "default";
+            }
+        }
+
+    } else if(path.endsWith('form_eliminar_alumnos.php')){
+
+        //Por cada elemento de la colección hacemos lo siguiente
+        for (const celda of acciones) {
+            //Seleccionamos el texto de las celdas
+            const botonEliminar = celda.children[0].children[0];
+            
+            if(activar){
+                botonEliminar.removeAttribute("disabled");
+                botonEliminar.style.backgroundColor = "#9d263e";
+                botonEliminar.style.color = "#FFFFFF";
+                botonEliminar.style.cursor = "pointer";
+                // botonRestablecer.removeAttribute("disabled");
+                // botonRestablecer.style.backgroundColor = "#9d263e";
+                // botonRestablecer.style.color = "#FFFFFF";
+                // botonRestablecer.style.cursor = "pointer";
+            } else{
+                botonEliminar.setAttribute("disabled", true);
+                botonEliminar.style.backgroundColor = "#D7D7D7";
+                botonEliminar.style.color = "#363636";
+                botonEliminar.style.cursor = "default";
+                // botonRestablecer.setAttribute("disabled", true);
+                // botonRestablecer.style.backgroundColor = "#D7D7D7";
+                // botonRestablecer.style.color = "#363636";
+                // botonRestablecer.style.cursor = "default";
+            }
         }
     }
+    
 }
 
-function eliminaUsuario(evento){
+function eliminaActividad(evento){
     
     const confirmacion = confirm("¿Está segudo de que quiere continuar?");
 
     if(confirmacion){
 
-        //Obtenemos el identificador (email) del usuario
-        const email = evento.target.value;
+        //Obtenemos el id de la actividad
+        const id_actividad = evento.target.value;
 
         //Creamos un objeto que contiene el nombre del método que vamos a usar y los parámetros.
         const datos = {
-            metodo: "borrarUsuario",
-            param: "",
-            email: email
+            metodo: "borrarActividad",
+            param: id_actividad,
+            email: null
         };
 
         fetch("./../api_fetch/fetch.php", {
@@ -111,11 +150,13 @@ function eliminaUsuario(evento){
             if(!response.ok){
                 throw new Error(`Error HTTP ${response.status}`);
             }
-            return response.json();
 
+            return response.json();
         })
         .then(data => {
+            console.log(data);
             if(data["resultado"] === true){
+                
                 
                 //Elimina la fila
                 const boton = evento.target;
@@ -137,6 +178,7 @@ function eliminaUsuario(evento){
         })
         .catch(error => {
             console.error(error);
+            console.log(error);
         })
     }
 }

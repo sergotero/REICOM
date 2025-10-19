@@ -322,7 +322,7 @@ FORMULARIOS PARA BOTONES ADMIN
 ==================================================
 */
 
-form[name="opciones"], form[name="gestion_usuarios"], form[name="acciones_usuario"], form[name="form_salir"], form[name="acciones"]{
+form[name="opciones"], form[name="gestion_usuarios"], form[name="acciones_usuario"], form[name="acciones_actividades"], form[name="form_salir"], form[name="acciones"]{
     display: flex;
     justify-content: center;
     align-items: center;

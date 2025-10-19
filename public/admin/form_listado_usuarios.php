@@ -41,35 +41,6 @@
         die();
     }
 
-    //BOTON ELIMINAR USUARIO 
-    if(isset($_POST['eliminar'])){
-        //Recuperamos los datos
-        $email = $_POST['eliminar'];
-
-        try {
-            //Recuperamos al usuario en cuestión
-            $resultado = $gestor->recuperaUsuario($bbdd, $email);
-            if($resultado){
-                $usuario = Usuario::cast($resultado);
-            }
-            //Eliminamos al alumno de la base
-            $gestor->eliminaUsuario($bbdd, $usuario);
-
-        } catch (EliminaUsuarioException $e) {
-            $errores[] = [
-                'codigo'   => $e->getCode(),
-                'mensaje'  => $e->getMessage(),
-                'archivo'  => $e->getFile(),
-                'linea'    => $e->getLine(),
-            ];
-        }
-        
-        $exitos[] = [
-            'codigo' => CodigosExito::USUARIO_ELIMINAR,
-            'mensaje' => 'Se ha eliminado al usuario con éxito'
-        ];
-    }
-
     //Consulta para generar la tabla
     try {
         $resultado = $gestor->recuperaUsuarios($bbdd);
@@ -226,7 +197,7 @@
                                 <td class='acciones'>
                                     <form name='acciones_usuario' action='{$accion}' method='POST'>
                                         <button type='submit' name='modificar' value='{$usuario->getEmail()}' title='Permite modificar los datos del usuario'>Modificar</button>    
-                                        <button type='submit' name='eliminar' value='{$usuario->getEmail()}' title='Elimina al usuario de la base'>Eliminar</button>
+                                        <button type='button' name='eliminar' value='{$usuario->getEmail()}' title='Elimina al usuario de la base'>Eliminar</button>
                                     </form>
                                 </td>
                             </tr>

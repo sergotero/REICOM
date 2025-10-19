@@ -57,7 +57,7 @@ class Gestor{
      * @param  ConexionBBDD $bbdd
      * @param  int $id_alumno
      * @throws ConsultaAlumnosException
-     * @return mixed
+     * @return stdClass|false
      */
     public function recuperaAlumno(ConexionBBDD $bbdd, int $id_alumno): mixed{
         try {
@@ -80,7 +80,7 @@ class Gestor{
      *
      * @param  ConexionBBDD $bbdd
      * @throws ConsultaAlumnosException
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaAlumnos(ConexionBBDD $bbdd): mixed{
         try {
@@ -102,7 +102,7 @@ class Gestor{
      *
      * @param  ConexionBBDD $bbdd
      * @param  string $curso
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaAlumnosCurso(ConexionBBDD $bbdd, string $curso): mixed{
         try {
@@ -119,12 +119,14 @@ class Gestor{
     }
     
     /**
-     * recuperaAlumnosCursoGrupo
+     * Recupera a los alumnos de un curso y grupo de la base de datos.
+     * 
+     * Este método recupera de la base de datos la información necesaria de cada alumno para construir un objeto Alumno completo (con excepción de las faltas, asistencias y actividades), filtrados por curso y grupo.
      *
      * @param  ConexionBBDD $bbdd
      * @param  string $curso
      * @param  string $grupo
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaAlumnosCursoGrupo(ConexionBBDD $bbdd, string $curso, string $grupo): mixed{
         try {
@@ -143,10 +145,12 @@ class Gestor{
 
     
     /**
-     * recuperaCursosGruposConFaltas
+     * Recupera los cursos y los grupos de alumnos que contengan alguna falta.
+     * 
+     * La fecha de la falta es igual a la fecha del día en el que se hace la consulta (está integrada en el código SQL).
      *
      * @param  ConexionBBDD $bbdd
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaCursosGruposConFaltas(ConexionBBDD $bbdd): mixed{
         try {
@@ -163,11 +167,11 @@ class Gestor{
     }
     
     /**
-     * recuperaUsuario
+     * Recupera a un usuario de la base de datos a partir de su email.
      *
      * @param  ConexionBBDD $bbdd
      * @param  string $email
-     * @return mixed
+     * @return stdClass|false
      */
     public function recuperaUsuario(ConexionBBDD $bbdd, string $email): mixed{
         try {
@@ -183,10 +187,10 @@ class Gestor{
     }
     
     /**
-     * recuperaUsuarios
+     * Recupera a todos los usuarios de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaUsuarios(ConexionBBDD $bbdd): mixed{
         try {
@@ -202,10 +206,12 @@ class Gestor{
     }
     
     /**
-     * recuperaCursos
+     * Recupera todos los cursos definidos en la base de datos.
+     * 
+     * Actualmente los cursos están definidos como ENUM, por lo que la consulta se hace sobre los metadatos de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
-     * @return mixed
+     * @return stdClass|false
      */
     public function recuperaCursos(ConexionBBDD $bbdd): mixed{
         try {
@@ -230,10 +236,12 @@ class Gestor{
     }
     
     /**
-     * recuperaGrupos
+     * Recupera a todos los grupos definidos en la base de datos.
+     * 
+     * Actualmente los grupos están definidos como ENUM, por lo que la consulta se hace sobre los metadatos de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
-     * @return mixed
+     * @return stdClass|false
      */
     public function recuperaGrupos(ConexionBBDD $bbdd): mixed{
         try {
@@ -259,10 +267,12 @@ class Gestor{
     }
     
     /**
-     * recuperaRoles
+     * Recupera a todos los roles definidos en la base de datos.
+     * 
+     * Actualmente los roles están definidos como ENUM, por lo que la consulta se hace sobre los metadatos de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
-     * @return mixed
+     * @return stdClass|false
      */
     public function recuperaRoles(ConexionBBDD $bbdd): mixed{
         try {
@@ -288,10 +298,10 @@ class Gestor{
     }
     
     /**
-     * recuperaTarifas
+     * Recupera todas las tarifas de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaTarifas(ConexionBBDD $bbdd): mixed{
         try {
@@ -307,11 +317,11 @@ class Gestor{
     }
     
     /**
-     * recuperaFaltas
+     * Recupera todas las faltas de un alumno de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaFaltas(ConexionBBDD $bbdd, Alumno $alumno): mixed{
         try {
@@ -331,11 +341,11 @@ class Gestor{
     }
     
     /**
-     * recuperaAsistencias
+     * Recupera todas las asistencias de un alumno de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaAsistencias(ConexionBBDD $bbdd, Alumno $alumno): mixed{
         try {
@@ -355,11 +365,11 @@ class Gestor{
     }
     
     /**
-     * recuperaFaltasHoy
+     * Recupera todas las faltas de un alumno de la base de datos en el día de hoy.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaFaltasHoy(ConexionBBDD $bbdd, Alumno $alumno): mixed{
         try {
@@ -381,11 +391,11 @@ class Gestor{
     }
     
     /**
-     * recuperaAsistenciasHoy
+     * Recupera todas las asistencias de un alumno de la base de datos en el día de hoy.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaAsistenciasHoy(ConexionBBDD $bbdd, Alumno $alumno): mixed{
         try {
@@ -407,13 +417,13 @@ class Gestor{
     }
     
     /**
-     * recuperaFaltasPeriodo
+     * Recupera las faltas de un alumno en un periodo de tiempo dado.
      *
      * @param  ConexionBBDD $bbdd
      * @param  int $id
      * @param  string $f_inicio
      * @param  string $f_fin
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaFaltasPeriodo(ConexionBBDD $bbdd, int $id, string $f_inicio, string $f_fin): mixed{
         try {
@@ -433,13 +443,13 @@ class Gestor{
     }
     
     /**
-     * recuperaFaltasMesAno
+     * Recupera las faltas de un alumno en un mes y un año dados.
      *
      * @param  ConexionBBDD $bbdd
      * @param  int $id
      * @param  int $mes
      * @param  int $ano
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaFaltasMesAno(ConexionBBDD $bbdd, int $id, int $mes, int $ano): mixed{
         try {
@@ -459,13 +469,13 @@ class Gestor{
     }
     
     /**
-     * recuperaAsistenciasPeriodo
+     * Recupera las asistencias de un alumno en un periodo de tiempo dado.
      *
      * @param  ConexionBBDD $bbdd
      * @param  int $id
      * @param  string $f_inicio
      * @param  string $f_fin
-     * @return mixed
+     * @return stdClass[]|false
      */
     public function recuperaAsistenciasPeriodo(ConexionBBDD $bbdd, int $id, string $f_inicio, string $f_fin): mixed{
         try {
@@ -484,6 +494,13 @@ class Gestor{
         return $resultado;
     }
 
+    /**
+     * Recupera una actividad concreta en la que participa un alumno.
+     *
+     * @param ConexionBBDD $bbdd
+     * @param integer $id_actividad
+     * @return stdClass|false
+     */
     public function recuperaActividad(ConexionBBDD $bbdd, int $id_actividad): mixed{
         try {
             $conexion = Conexion::getInstancia($bbdd)->getConexion();
@@ -500,6 +517,12 @@ class Gestor{
         return $resultado;
     }
 
+    /**
+     * Recupera todas las actividades de la base de datos.
+     *
+     * @param ConexionBBDD $bbdd
+     * @return stdClass[]|false
+     */
     public function recuperaActividades(ConexionBBDD $bbdd): mixed{
         try {
             $conexion = Conexion::getInstancia($bbdd)->getConexion();
@@ -514,6 +537,13 @@ class Gestor{
         return $resultado;
     }
 
+    /**
+     * Recupera todas las actividades en las que participa un alumno.
+     *
+     * @param ConexionBBDD $bbdd
+     * @param Alumno $alumno
+     * @return stdClass[]|false
+     */
     public function recuperaActividadesAlumno(ConexionBBDD $bbdd, Alumno $alumno): mixed{
         try {
             $conexion = Conexion::getInstancia($bbdd)->getConexion();
@@ -532,9 +562,9 @@ class Gestor{
         return $resultado;
     }
 
-    //FUNCIONES DE INSERCIÓN DE DATOS    
+
     /**
-     * insertaAlumno
+     * Inserta a un alumno en la tabla alumnos de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -571,7 +601,7 @@ class Gestor{
     }
     
     /**
-     * insertaUsuario
+     * Inserta a un usuario en la tabla usuarios de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Usuario $usuario
@@ -604,7 +634,7 @@ class Gestor{
     }
     
     /**
-     * insertaFalta
+     * Inserta una falta en la tabla faltas de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -635,7 +665,7 @@ class Gestor{
     }
     
     /**
-     * insertaAsistencia
+     * Inserta una asistencia en la tabla asistencias de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -661,7 +691,7 @@ class Gestor{
     }
     
     /**
-     * insertaActividadAlumno
+     * Inserta una actividad vinculada a un alumno en la tabla actividades_alumno de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -687,7 +717,7 @@ class Gestor{
     }
     
     /**
-     * insertaActividad
+     * Inserta una actividad en la tabla actividad de la base de datos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Actividad $actividad
@@ -719,9 +749,8 @@ class Gestor{
         return $resultado;
     }
 
-    //FUNCIONES DE ACTUALIZACIÓN DE DATOS    
     /**
-     * actualizaAlumno
+     * Actualiza los datos de un alumno en la tabla alumnos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -760,7 +789,7 @@ class Gestor{
     }
     
     /**
-     * actualizaUsuario
+     * Actualiza los datos de un usuario en la tabla usuarios.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Usuario $usuario
@@ -796,7 +825,7 @@ class Gestor{
     }
     
     /**
-     * actualizaFalta
+     * Actualiza una falta en la tabla faltas.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -826,7 +855,7 @@ class Gestor{
     }
     
     /**
-     * actualizaAsistencia
+     * Actualiza una asistencia en la tabla asistencias.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -852,7 +881,7 @@ class Gestor{
     }
     
     /**
-     * actualizaActividad
+     * Actualiza una actividad en la tabla actividades.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Actividad $actividad
@@ -885,9 +914,8 @@ class Gestor{
         return $resultado;
     }
 
-    //FUNCIONES DE ELIMINACIÓN DE DATOS    
     /**
-     * eliminaFaltas
+     * Elimina la falta de un alumno de la tabla faltas.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -913,7 +941,7 @@ class Gestor{
     }
     
     /**
-     * eliminaAsistencias
+     * Elimina la asistencia de un alumno de la tabla asistencias.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -938,7 +966,7 @@ class Gestor{
     }
     
     /**
-     * eliminaAlumno
+     * Elimina un alumno de la tabla alumnos.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -961,7 +989,7 @@ class Gestor{
     }
     
     /**
-     * eliminaUsuario
+     * Elimina a un usuario de la tabla usuarios.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Usuario $usuario
@@ -984,7 +1012,7 @@ class Gestor{
     }
     
     /**
-     * eliminaActividadAlumno
+     * Elimina una actividad vinculada a un alumno de la tabla actividades_alumno.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -1011,7 +1039,7 @@ class Gestor{
     }
     
     /**
-     * eliminaActividadesAlumno
+     * Elimina el registro de actividades de un alumno de la tabla actividades_alumno
      *
      * @param  ConexionBBDD $bbdd
      * @param  Alumno $alumno
@@ -1035,7 +1063,7 @@ class Gestor{
     }
     
     /**
-     * eliminaActividad
+     * Elimina una actividad de la tabla actividades.
      *
      * @param  ConexionBBDD $bbdd
      * @param  Actividad $actividad
@@ -1058,15 +1086,14 @@ class Gestor{
         return $resultado;
     }
 
-    //FUNCIONES DE CALCULO    
     /**
-     * totalFaltasPeriodo
+     * Calcula el total de faltas de un alumno en un periodo de tiempo dado.
      *
      * @param  ConexionBBDD $bbdd
      * @param  int $id
      * @param  string $f_inicio
      * @param  string $f_fin
-     * @return mixed
+     * @return stdClass|false
      */
     public function totalFaltasPeriodo(ConexionBBDD $bbdd, int $id, string $f_inicio, string $f_fin): mixed{
         try {
@@ -1086,13 +1113,13 @@ class Gestor{
     }
         
     /**
-     * totalAsistenciasPeriodo
+     * Calcula el total de asistencias de un alumno en un periodo de tiempo dado.
      *
      * @param  ConexionBBDD $bbdd
      * @param  int $id
      * @param  string $f_inicio
      * @param  string $f_fin
-     * @return mixed
+     * @return stdClass|false
      */
     public function totalAsistenciasPeriodo(ConexionBBDD $bbdd, int $id, string $f_inicio, string $f_fin): mixed{
         try {
@@ -1111,9 +1138,8 @@ class Gestor{
         return $resultado;
     }
 
-    //FUNCIÓN PARA RESETEO COMPLETO DE LA BASE (excepto usuarios)    
     /**
-     * reseteaBBDD
+     * Resetea las tablas alumnos, faltas, asistencias y actividades y restablece los identificadores de dichas tablas a cero.
      *
      * @param  ConexionBBDD $bbdd
      * @return bool

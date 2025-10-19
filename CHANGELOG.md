@@ -10,16 +10,29 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
-## [0.7.1] - 2025-10-15
+## [0.8.0] - 2025-10-19
 ### Cambiado
-- Modificaciones en la estructura del proyecto: se añaden las carpetas como `assets`, `api_fetch`, `tools` y `docs`.
-- Modificación de enlaces que afectaban a JavaScript y CSS.
+- Eliminado el código PHP referido a los botones de añadir `Asiste`, `Falta` y `Borrar A/F` en `form_listado_alumnos.php`.
+- Eliminado el código PHP referido a los botones de añadir `Asiste`, `Falta` y `Borrar A/F` en `form_buscador_alumnos.php`.
+- Eliminado el código PHP referido al botón de `Eliminar` del `form_eliminar_alumnos.php`.
+- Eliminado el código PHP referido al botón de `Eliminar` del `form_listado_usuarios.php`.
+- Eliminado el código PHP referido al botón de `Eliminar` del `form_listado_actividades.php`.
+- Comentado el código para que se muestre el botón de `Restablecer base` para futuras implementaciones. De momento, se considera potencialmente peligroso para los usuarios.
+- Cambio de nombre del directorio `tests` por `examples` y nueva ubicación. Ahora se encuentra en `private/examples`
 
 ## Corregido
-- Cambio en los tipos de la clase `Alumno` y `Gestor`. Los tipos existentes eran un tanto genéricos y se han cambiado por otros más restrictivos.
+- Documentación de la clase Gestor (gran parte de los métodos no habían sido debidamente documentados).
 
 ## Añadido
-- Comentarios en todas las clases, interfaces y excepciones para la futura generación de la documentación.
+- Creación del directorio `public/api_fetch`.
+- Creación del archivo `fetch.php` que contiene los nuevos métodos en JavaScript:
+  - `crearAsistencia`: sustituye al bloque PHP que permitía crear asistencias en `form_listado_alumnos.php` y en `form_buscador_alumnos.php`.
+  - `crearFalta`: sustituye al bloque PHP que permitía crear faltas en `form_listado_alumnos.php` y en `form_buscador_alumnos.php`.
+  - `borraAsistenciaFalta`: sustituye al bloque PHP que permitía borrar asistencias/faltas en `form_listado_alumnos.php` y en `form_buscador_alumnos.php`.
+  - `eliminarAlumno`: sustituye al bloque PHP que permitía eliminar alumnos en `form_eliminar_alumnos.php`.
+  - `borrarUsuario`: sustituye al bloque PHP que permitía crear asistencias en `form_listado_usuarios.php.php`.
+  - `borrarActividad`: sustituye al bloque PHP que permitía crear asistencias en `form_listado_actividades.php`.
+- Creación de nuevo método (`rehabilitarBotones`) en JavaScript que permite reestablecer los estilos previos de los botones `Asiste`, `Falta` y `Borra A/F`.
 
 ---
 
@@ -38,6 +51,19 @@ Además de los hitos detallados arriba, durante este periodo se implementaron y 
 - Añadido soporte para buscadores avanzados y botones de asistencia múltiple.
 - Creación del botón **Eliminador**, sección específica y mejora en el sistema de informes.
 - Inclusión de nuevas gráficas e informes visuales (Gantt, comedor, estadísticas).
+
+---
+
+## [0.7.1] - 2025-10-15
+### Cambiado
+- Modificaciones en la estructura del proyecto: se añaden las carpetas como `assets`, `api_fetch`, `tools` y `docs`.
+- Modificación de enlaces que afectaban a JavaScript y CSS.
+
+## Corregido
+- Cambio en los tipos de la clase `Alumno` y `Gestor`. Los tipos existentes eran un tanto genéricos y se han cambiado por otros más restrictivos.
+
+## Añadido
+- Comentarios en todas las clases, interfaces y excepciones para la futura generación de la documentación.
 
 ---
 
