@@ -10,6 +10,34 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
+## [0.8.1] - 2025-10-22
+### Añadido
+- Generación de la documentación con `PHPDocumentor`.
+- Añadido en `.gitignore` la carpeta generada por `PHPDocumentor` llamada `.phpdoc`.
+
+### Eliminado
+- Todos los repositorios generados de forma automática por `PHPDocumentor`.
+
+---
+
+## [0.0.3 → 0.6.0] - Consolidación posterior (julio–septiembre 2025)
+Además de los hitos detallados arriba, durante este periodo se implementaron y ajustaron los siguientes aspectos:
+
+### Interfaz y estilo
+- Cambios de diseño en cabecera, colores y estilos CSS.
+- Implementación de migas de pan (*breadcrumbs*) para mejorar la navegación.
+- Limpieza de estilos y revisión general de la presentación.
+
+### Funcionalidades
+- Creación y refinamiento de clases `CodigosError`, `CodigosExito` y sistema de excepciones.
+- Mejoras en código JavaScript y componentes interactivos (interruptores, botones, validaciones).
+- Reformas en la base de datos y generación de documentos PDF.
+- Añadido soporte para buscadores avanzados y botones de asistencia múltiple.
+- Creación del botón **Eliminador**, sección específica y mejora en el sistema de informes.
+- Inclusión de nuevas gráficas e informes visuales (Gantt, comedor, estadísticas).
+
+---
+
 ## [0.8.0] - 2025-10-19
 ### Cambiado
 - Eliminado el código PHP referido a los botones de añadir `Asiste`, `Falta` y `Borrar A/F` en `form_listado_alumnos.php`.
@@ -33,24 +61,6 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
   - `borrarUsuario`: sustituye al bloque PHP que permitía crear asistencias en `form_listado_usuarios.php.php`.
   - `borrarActividad`: sustituye al bloque PHP que permitía crear asistencias en `form_listado_actividades.php`.
 - Creación de nuevo método (`rehabilitarBotones`) en JavaScript que permite reestablecer los estilos previos de los botones `Asiste`, `Falta` y `Borra A/F`.
-
----
-
-## [0.0.3 → 0.6.0] - Consolidación posterior (julio–septiembre 2025)
-Además de los hitos detallados arriba, durante este periodo se implementaron y ajustaron los siguientes aspectos:
-
-### Interfaz y estilo
-- Cambios de diseño en cabecera, colores y estilos CSS.
-- Implementación de migas de pan (*breadcrumbs*) para mejorar la navegación.
-- Limpieza de estilos y revisión general de la presentación.
-
-### Funcionalidades
-- Creación y refinamiento de clases `CodigosError`, `CodigosExito` y sistema de excepciones.
-- Mejoras en código JavaScript y componentes interactivos (interruptores, botones, validaciones).
-- Reformas en la base de datos y generación de documentos PDF.
-- Añadido soporte para buscadores avanzados y botones de asistencia múltiple.
-- Creación del botón **Eliminador**, sección específica y mejora en el sistema de informes.
-- Inclusión de nuevas gráficas e informes visuales (Gantt, comedor, estadísticas).
 
 ---
 
