@@ -10,13 +10,17 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
-## [0.8.1] - 2025-10-22
-### Añadido
-- Generación de la documentación con `PHPDocumentor`.
-- Añadido en `.gitignore` la carpeta generada por `PHPDocumentor` llamada `.phpdoc`.
+## [0.9.0] - 2025-10-22
+### Modificado
+- Modificación del método `compruebaAlumnos` de la clase `Gestor`: en las consultas se ha cambiado el uso de la palabra reservada `LIKE` por `=`.
+- Cambios en `form_imprimir_diario`: las actividades se filtran para que sólo se muestren si el día de realización de la actividad es igual al día de semana actual.
+- Modificación de la clase `Actividad`:
+  - El constructor ahora aplica el método `setActividad` que descompone el `string` que recibe por argumento y lo transforma en un array de días.
+  - El atributo `dias` pasa de ser un `string` a un `array`.
+- Generación de la documentación para reflejar los cambios.
 
-### Eliminado
-- Todos los repositorios generados de forma automática por `PHPDocumentor`.
+### Añadido
+- Nuevo método en clase `Alumno` llamado `getActividadDia` que devuelve un string con los nombres de las actividades que coinciden con el día de la semana que se le pasa por argumento.
 
 ---
 
@@ -35,6 +39,16 @@ Además de los hitos detallados arriba, durante este periodo se implementaron y 
 - Añadido soporte para buscadores avanzados y botones de asistencia múltiple.
 - Creación del botón **Eliminador**, sección específica y mejora en el sistema de informes.
 - Inclusión de nuevas gráficas e informes visuales (Gantt, comedor, estadísticas).
+
+---
+
+## [0.8.1] - 2025-10-22
+### Añadido
+- Generación de la documentación con `PHPDocumentor`.
+- Añadido en `.gitignore` la carpeta generada por `PHPDocumentor` llamada `.phpdoc`.
+
+### Eliminado
+- Todos los repositorios generados de forma automática por `PHPDocumentor`.
 
 ---
 

@@ -186,7 +186,7 @@
                     foreach ($actividades as $actividad) {
                         $ubicacion = explode(",", $actividad->getUbicacion());
                         $ubicacion = implode("<br>", $ubicacion);
-                        $dias = explode(",", $actividad->getDias());
+                        $dias = $actividad->getDias();
                         $dias = implode("<br>", $dias);
                         echo <<<MARCA
                             <tr>

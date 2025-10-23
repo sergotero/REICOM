@@ -10,6 +10,34 @@ $usuario = $_SESSION['usuario'];
 $hoy = date('Y-m-d');
 $fechaImpresion = date('d/m/Y');
 
+// Estas fechas las necesitamos para poder hacer un cribado más adelante.
+$today = date_create($hoy);
+
+$hoy_literal = date_format($today, "D");
+switch ($hoy_literal) {
+    case "Mon":
+        $hoy_literal = "Lunes";
+        break;
+    case "Tue":
+        $hoy_literal = "Martes";
+    break;
+    case "Wed":
+        $hoy_literal = "Miércoles";
+    break;
+    case "Thu":
+        $hoy_literal = "Jueves";
+    break;
+    case "Fri":
+        $hoy_literal = "Viernes";
+    break;
+    case "Sat":
+        $hoy_literal = "Sábado";
+    break;
+    case "Sun":
+        $hoy_literal = "Domingo";
+    break;
+}
+
 $pdf = new TCPDF();
 
 // =====================
@@ -110,7 +138,8 @@ try {
                     if($actividades != null){
                         $alumno->setActividades($actividades);
                     }
-                    $textoActividades = $alumno->actividadesToString();
+                    $textoActividades = $alumno->getActividadDia($hoy_literal);
+                    
                     // Recuperamos faltas
                     $faltas = Falta::multicast($gestor->recuperaFaltas($bbdd, $alumno));
             

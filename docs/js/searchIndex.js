@@ -476,6 +476,11 @@ Search.appendIndex(
             "summary": "Devuelve\u0020un\u0020array\u0020que\u0020contiene\u0020las\u0020actividades\u0020extraescolares\u0020a\u0020las\u0020que\u0020asiste\u0020el\u0020alumno.",
             "url": "classes/Alumno.html#method_getActividades"
         },                {
+            "fqsen": "\\Alumno\u003A\u003AgetActividadDia\u0028\u0029",
+            "name": "getActividadDia",
+            "summary": "Devuelve\u0020un\u0020string\u0020con\u0020las\u0020actividades\u0020extraescolares\u0020en\u0020las\u0020que\u0020partcipa\u0020un\u0020alumno\u0020en\u0020un\u0020d\u00EDa\u0020concreto.",
+            "url": "classes/Alumno.html#method_getActividadDia"
+        },                {
             "fqsen": "\\Alumno\u003A\u003AsetId\u0028\u0029",
             "name": "setId",
             "summary": "Establece\u0020el\u0020identificador\u0020del\u0020alumno.",

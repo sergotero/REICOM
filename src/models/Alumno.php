@@ -266,6 +266,34 @@ class Alumno {
     }
 
     /**
+     * Devuelve un string con las actividades extraescolares en las que partcipa un alumno en un día concreto.
+     * 
+     * A diferencia de otros métodos, este método toma un parámetro que contiene una fecha e itera entre las diferentes actividades hasta encontrar la que coincide con el día de la semana. El parámetro día debe ser igual a cualquiera de los siguientes valores ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]. Si no existen actividades, devuelve un string vacío.
+     *
+     * @param string $dia
+     * @return string
+     */
+    public function getActividadDia(string $dia): string {
+        $actividadDia = "";
+        if($this->actividades == null || count($this->actividades) == 0){
+            return $actividadDia;
+        } else {
+            for ($i = 0; $i < count($this->actividades); $i++) { 
+                $actividad = $this->actividades[$i];
+                $diasActividad = $actividad->getDias();
+                
+                for ($j = 0; $j < count($diasActividad); $j++) { 
+                    $diaAct = $diasActividad[$j];
+                    if($diaAct == $dia){
+                        $actividadDia .= $actividad->getActividad() . ", ";
+                    }
+                }
+            }
+        }
+        return $actividadDia;
+    }
+
+    /**
      * Establece el identificador del alumno.
      *
      * @param integer $nuevoId

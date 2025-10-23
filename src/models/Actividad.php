@@ -20,9 +20,9 @@ class Actividad{
     /**
      * Nombre de la actividad
      *
-     * @var string|null
+     * @var string
      */
-    private ?string $actividad;
+    private string $actividad;
 
     /**
      * Hora de inicio de la actividad
@@ -48,9 +48,10 @@ class Actividad{
     /**
      * Días en los que se realiza la actividad
      *
-     * @var string|null
+     * @var array|null
      */
-    private ?string $dias;
+    // private ?string $dias;
+        private ?array $dias;
 
     /**
      * Constructor de la clase Actividad
@@ -65,7 +66,7 @@ class Actividad{
             $this->h_inicio = $comprobacion->h_inicio;
             $this->h_fin = $comprobacion->h_fin;
             $this->ubicacion = $comprobacion->ubicacion;
-            $this->dias = $comprobacion->dias;
+            $this->setDias($comprobacion->dias);
         } else{
             $this->id = null;
             $this->actividad = $actividad;
@@ -74,7 +75,6 @@ class Actividad{
             $this->ubicacion = null;
             $this->dias = null;
         }
-        
     }
 
     /**
@@ -127,9 +127,12 @@ class Actividad{
     /**
      * Devuelve los días en los que se lleva a cabo la actividad
      *
-     * @return string|null
+     * @return array|null
      */
-    public function getDias(): ?string{
+    // public function getDias(): ?string{
+    //     return $this->dias;
+    // }
+    public function getDias(): ?array {
         return $this->dias;
     }
 
@@ -190,6 +193,7 @@ class Actividad{
      * @return void
      */
     public function setDias(?string $dias): void{
+        $dias = explode(", ", $dias);
         $this->dias = $dias;
     }
 

@@ -29,11 +29,11 @@ class Gestor{
     public function compruebaAlumno(ConexionBBDD $bbdd, Alumno $alumno): bool{
         try {
             $conexion = Conexion::getInstancia($bbdd)->getConexion();
-            $consulta = $conexion->prepare("SELECT * FROM alumnos WHERE nombre LIKE :nombre AND apellido1 LIKE :apellido1 AND apellido2 LIKE :apellido2 AND f_nacimiento = :f_nacimiento");
+            $consulta = $conexion->prepare("SELECT * FROM alumnos WHERE nombre = :nombre AND apellido1 = :apellido1 AND apellido2 = :apellido2 AND f_nacimiento = :f_nacimiento");
 
-            $nombre = '%' . $alumno->getNombre() . '%';
-            $apellido1 = '%' . $alumno->getApellido1() . '%';
-            $apellido2 = '%' . $alumno->getApellido2() . '%';
+            $nombre = $alumno->getNombre();
+            $apellido1 = $alumno->getApellido1();
+            $apellido2 = $alumno->getApellido2();
             $nacimiento = $alumno->getNacimiento();
 
             $consulta->bindParam(":nombre", $nombre, PDO::PARAM_STR);
@@ -547,7 +547,7 @@ class Gestor{
     public function recuperaActividadesAlumno(ConexionBBDD $bbdd, Alumno $alumno): mixed{
         try {
             $conexion = Conexion::getInstancia($bbdd)->getConexion();
-            $consulta = $conexion->prepare("SELECT alumnos.*, actividades.actividad FROM alumnos LEFT JOIN actividades_alumno ON alumnos.id = actividades_alumno.id_alumno LEFT JOIN actividades ON actividades.id = actividades_alumno.id_actividad WHERE alumnos.id = :id;");
+            $consulta = $conexion->prepare("SELECT actividades.* FROM actividades LEFT JOIN actividades_alumno ON actividades.id = actividades_alumno.id_actividad LEFT JOIN alumnos ON alumnos.id = actividades_alumno.id_alumno WHERE alumnos.id = :id;");
             
             $id_alumno = $alumno->getId();
 
