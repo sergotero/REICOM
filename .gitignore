@@ -1,3 +1,8 @@
 /.vscode
-/sql/datos_pruebas.sql
 /.phpdoc
+sql/datos_prueba.sql
+private/backups/
+private/examples/Lista_usuarios_reicom.xlsx
+private/examples/Ejemplo_alumnos_csv.xlsx
+public/assets/js/utils_limpio.js
+.phpdoc/cache/

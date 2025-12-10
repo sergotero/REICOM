@@ -10,15 +10,11 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
-## [0.9.1] - 2025-12-10
-### Corregido
-- Se ha añadido un trozo de código en los forms para la generación de informes que evitan que las hojas se generen con errores cuando una tabla es demasiado grande.
-- Se ha modificado el mensaje de éxito al realizar la subida múltiple.
-- Se ha corregido el método `actualizaActividad` para que guarde correctamente en la base los valores modificados.
-- Se ha añadido un trozo de código en el `form_buscador_alumnos` que hace que se limpien los objetos Alumno almacenados en la sesión cuando se realiza una nueva búsqueda e impida que se sumen a los ya existentes.
+## [0.9.2] - 2025-12-11
 
 ### Añadido
-- Se han añadido los diagramas ER y el diagrama de clases UML.
+- Se ha añadido un archivo `README.md` al proyecto que contiene la información técnica básica.
+- Se han añadido una serie de archivos al `.gitignore`
 ---
 
 ## [0.0.3 → 0.6.0] - Consolidación posterior (julio–septiembre 2025)
@@ -37,6 +33,17 @@ Además de los hitos detallados arriba, durante este periodo se implementaron y 
 - Creación del botón **Eliminador**, sección específica y mejora en el sistema de informes.
 - Inclusión de nuevas gráficas e informes visuales (Gantt, comedor, estadísticas).
 
+---
+
+## [0.9.1] - 2025-12-10
+### Corregido
+- Se ha añadido un trozo de código en los forms para la generación de informes que evitan que las hojas se generen con errores cuando una tabla es demasiado grande.
+- Se ha modificado el mensaje de éxito al realizar la subida múltiple.
+- Se ha corregido el método `actualizaActividad` para que guarde correctamente en la base los valores modificados.
+- Se ha añadido un trozo de código en el `form_buscador_alumnos` que hace que se limpien los objetos Alumno almacenados en la sesión cuando se realiza una nueva búsqueda e impida que se sumen a los ya existentes.
+
+### Añadido
+- Se han añadido los diagramas ER y el diagrama de clases UML.
 ---
 
 ## [0.9.0] - 2025-10-22
