@@ -1,0 +1,318 @@
+@startuml
+
+'!theme crt-amber
+'!theme toy
+!theme reddress-darkblue
+top to bottom direction
+skinparam linetype ortho
+
+class Actividad {
+   - id: int
+   - actividad: String 
+   - h_fin: String
+   - h_inicio: String
+   - ubicacion: String
+   - dias: String[]
+   --
+   __construct(actividad): Actividad
+   --
+   + {static} cast()
+   + getActividad(): String
+   + getDias(): String[]
+   + getHoraFin(): String
+   + getHoraInicio(): String
+   + getId(): int
+   + getUbicacion(): String
+   + {static} multicast(): Actividad[]
+   + setActividad(): void
+   + setDias(): void
+   + setHoraFin(): void
+   + setHoraInicio(): void
+   + setId(): void
+   + setUbicacion(): void
+   + compruebaActividad(): void
+}
+class Alumno {
+   - id: int
+   - nombre: String
+   - apellido1: String
+   - apellido2: String
+   - f_nacimiento: String
+   - curso: String
+   - grupo: String
+   - alergias: String
+   - tarifa: Tarifa
+   - cursos: String[]
+   - grupos: String[]
+   - actividades: Actividad[]
+   - faltas: Falta[]
+   - asistencias: Asistencia[]
+   --
+   __construct(nombre, apellido1, apellido2, f_nacimiento, curso, grupo, alergias, valorTarifa): Alumno
+   --
+   + actividadesToString(): String
+   + {static} cast(): Alumno
+   + compruebaCurso(): void
+   + compruebaGrupo(): void
+   + {static} creaDesdeCSV(): Alumno[]
+   + {static} formatoFecha(): String
+   + getActividadDia(): String
+   + getActividades(): Actividad[]
+   + getAlergias(): String
+   + getApellido1(): String
+   + getApellido2(): String
+   + getAsistencia(): Asistencia
+   + getAsistencias(): Asistencia[]
+   + getCalendario(): String[]
+   + getCurso(): String
+   + getFalta(): Falta
+   + getFaltas(): Falta[]
+   + getGrupo(): String
+   + getId(): int
+   + getNacimiento(): String
+   + getNombre(): String
+   + getNombreCompleto(): String
+   + getTarifa(): Tarifa
+   + {static} multicast(): Alumnos[]
+   + setActividad(): void
+   + setActividades(): void
+   + setAlergias(): void
+   + setApellido1(): void
+   + setApellido2(): void
+   + setAsistencia(): void
+   + setAsistencias(): void
+   + setCurso(): void
+   + setFalta(): void
+   + setFaltas(): void
+   + setGrupo(): void
+   + setNacimiento(): void
+   + setNombre(): void
+   + setTarifa(): void
+   + {static} ultimoId(): stadClass|false
+   - getDia(): String|null
+   - setId(): void
+}
+class Asistencia {
+   - id_asistencia: int
+   - f_asistencia: String
+   __construct(f_asistencia): Asistencia
+   + {static} cast(): Asistencia
+   + getFecha(): String
+   + getId(): int
+   + {static} multicast(): Asistencia[]
+   + setFecha(): void
+   + setId(): void
+}
+class CodigosError {
+   + ASISTENCIA_INSERTAR: int
+   + ASISTENCIA_CONSULTAR: int
+   + TARIFA_CONSULTAR: int
+   + FALTA_INSERTAR: int
+   + ALUMNO_ELIMINAR: int
+   + FALTA_CONSULTAR: int
+   + USUARIO_ELIMINAR: int
+   + USUARIO_COMPROBAR: int
+   + TARIFA_CREAR: int
+   + FALTA_ELIMINAR: int
+   + USUARIO_CONSULTAR: int
+   + ASISTENCIA_ELIMINAR: int
+   + USUARIO_ACTUALIZAR: int
+   + USUARIO_INSERTAR: int
+   + ACTIVIDAD_INSERTAR: int
+   + ALUMNO_INSERTAR: int
+   + ALUMNO_CONSULTAR: int
+   + ALUMNO_COMPROBAR: int
+   + ASISTENCIA_ACTUALIZAR: int
+   + ALUMNO_ACTUALIZAR: int
+   + ACTIVIDAD_ELIMINAR: int
+   + GENERICO_SIN_CODIGO: int
+   + FALTA_ACTUALIZAR: int
+   + ACTIVIDAD_CONSULTAR: int
+   + ACTIVIDAD_ACTUALIZAR: int
+   + ALUMNO_CREAR: int
+}
+class CodigosExito {
+   + ASISTENCIA_CONSULTAR: int
+   + ASISTENCIA_INSERTAR: int
+   + USUARIO_INSERTAR: int
+   + FALTA_INSERTAR: int
+   + ACTIVIDAD_INSERTAR: int
+   + ALUMNO_INSERTAR: int
+   + ALUMNO_ELIMINAR: int
+   + ALUMNO_COMPROBAR: int
+   + ALUMNO_CONSULTAR: int
+   + FALTA_CONSULTAR: int
+   + ASISTENCIA_ACTUALIZAR: int
+   + ALUMNO_ACTUALIZAR: int
+   + USUARIO_ELIMINAR: int
+   + ACTIVIDAD_ELIMINAR: int
+   + USUARIO_COMPROBAR: int
+   + FALTA_ACTUALIZAR: int
+   + ACTIVIDAD_CONSULTAR: int
+   + ACTIVIDAD_ACTUALIZAR: int
+   + FALTA_ELIMINAR: int
+   + TARIFAS_CREAR: int
+   + USUARIO_CONSULTAR: int
+   + ALUMNO_CREAR: int
+   + ASISTENCIA_ELIMINAR: int
+   + USUARIO_ACTUALIZAR: int
+   + ALUMNO_RESTABLECER: int
+}
+
+class Conexion {
+   - {static} instancia: Conexion|null
+   - conexion: PDO
+   --
+   __construct(bbdd): Conexion
+   --
+   + cerrarConexion(): void
+   + getConexion(): PDO
+   + {static} getInstancia(): Conexion
+}
+class Falta {
+   - emisor_aviso: String
+   - f_falta: String
+   - id_falta: int
+   - h_aviso: String
+   --
+   __construct(fecha, emisor, hora): Falta
+   --
+   + {static} cast(): Falta
+   + getEmisor(): String
+   + getFecha(): String
+   + getHora(): String
+   + getId(): int
+   + {static} multicast(): Falta[]
+   + setEmisor(): void
+   + setFecha(): void
+   + setHora(): void
+   - setId(): void
+}
+class Gestor {
+   __construct(): Gestor
+   --
+   + actualizaActividad(): bool
+   + actualizaAlumno(): bool
+   + actualizaAsistencia(): bool
+   + actualizaFalta(): bool
+   + actualizaUsuario(): bool
+   + compruebaAlumno(): bool
+   + eliminaActividad(): bool
+   + eliminaActividadAlumno(): bool
+   + eliminaActividadesAlumno(): bool
+   + eliminaAlumno(): bool
+   + eliminaAsistencias(): bool
+   + eliminaFaltas(): bool
+   + eliminaUsuario(): bool
+   + insertaActividad(): bool
+   + insertaActividadAlumno(): bool
+   + insertaAlumno(): bool
+   + insertaAsistencia(): bool
+   + insertaFalta(): bool
+   + insertaUsuario(): bool
+   + recuperaActividad(): stdClass|false
+   + recuperaActividades(): stdClass[]|false
+   + recuperaActividadesAlumno(): stdClass|false
+   + recuperaAlumno(): stdClass|false
+   + recuperaAlumnos(): stdClass[]|false
+   + recuperaAlumnosCurso(): stdClass[]|false
+   + recuperaAlumnosCursoGrupo(): stdClass[]|false
+   + recuperaAsistencias(): stdClass[]|false
+   + recuperaAsistenciasHoy(): stdClass[]|false
+   + recuperaAsistenciasPeriodo(): stdClass[]|false
+   + recuperaCursos(): stdClass[]|false
+   + recuperaCursosGruposConFaltas(): stdClass[]|false
+   + recuperaFaltas(): stdClass[]|false
+   + recuperaFaltasHoy(): stdClass[]|false
+   + recuperaFaltasMesAno(): stdClass[]|false
+   + recuperaFaltasPeriodo(): stdClass[]|false
+   + recuperaGrupos(): stdClass[]|false
+   + recuperaRoles(): stdClass[]|false
+   + recuperaTarifas(): stdClass[]|false
+   + recuperaUsuario(): stdClass|false
+   + recuperaUsuarios(): stdClass[]|false
+   + reseteaBBDD(): bool
+   + totalAsistenciasPeriodo(): stdClass|false
+   + totalFaltasPeriodo(): stdClass|false
+}
+class MySQLBBDD {
+   __construct(): 
+   --
+   + getConexion(): PDO
+}
+class Tarifa {
+   - id: int
+   - tarifa: float
+   -- 
+   __construct(tarifa): Tarifa
+   --
+   + {static} cast(): Tarifa
+   + getId(): int
+   + getTarifa(): float
+   + {multicast} multicast(): Tarifa[]
+   - consultaIdTarifa(): stdClass|null
+}
+class Usuario {
+   - id: int
+   - nombre: String
+   - apellido1: String
+   - apellido2: String
+   - email: String
+   - contrasena: String
+   - roles: String[]
+   - rol: String
+   --
+   __construct(nombre, apellido1, apellido2, email, contrasena, rol): Usuario
+   --
+   + {static} cast(): Usuario
+   + getApellido1(): String
+   + getApellido2(): String
+   + getEmail(): String
+   + getId(): int
+   + getNombre(): String
+   + getPass(): String
+   + getRol(): String
+   + {static} multicast(): Usuario[]
+   + setApellido1(): void
+   + setApellido2(): void
+   + setEmail(): void
+   + setNombre(): void
+   + setRol(): void
+   - compruebaRol(): void
+   - setId(): void
+}
+interface ConexionBBDD{
+   getConexion()
+}
+
+'Realización (herencia de interfaz)
+MySQLBBD --|> ConexionBBDD
+
+'Composición
+Alumno "1" *-- "0..*" Falta
+Alumno "1" *-- "0..*" Asistencia
+
+'Asociación bilateral
+Alumno "0..*" -- "0..*" Actividad
+
+'Asociación
+Alumno "1" --> "1" Tarifa
+
+'Dependencia (usa/reciba como parámetro)
+Gestor "0..*"..> Alumno
+Gestor "0..*"..> Tarifa
+Gestor "0..*"..> Asistencia
+Gestor "0..*"..> Falta
+Gestor "0..*"..> Usuario
+Gestor "0..*"..> Conexion
+Gestor "0..*"..> Actividad
+'No existe cardinalidad porque son clases utilitarias con constantes
+Gestor ..> CodigosError
+Gestor ..> CodigosExito
+
+'Realización/Dependencia
+Conexion ..> ConexionBBDD
+
+'Exportación desde: https://www.plantuml.com/plantuml/
+
+@enduml

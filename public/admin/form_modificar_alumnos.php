@@ -252,7 +252,7 @@
             }
         ?>
         </div>
-        <form name="mod_alumno" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <form name="mod_alumno" action="<?php echo $_SERVER['PHP_SELF'] . "?origen=buscador"; ?>" method="post">
 
             <!-- ALUMNO -->
             <fieldset class="alumno">

@@ -45,17 +45,6 @@ window.onload = () =>{
         borra.addEventListener(("click"), (evento) => restablece(evento));
     }
 
-
-    //BUSCADOR DE PROFESOR
-    // let botones_asistencia = document.getElementsByName('asistencia');
-    // botones_asistencia.forEach(boton => {
-    //     boton.addEventListener('click', deshabilitarBotones);
-    // })
-    // let botones_falta = document.getElementsByName('faltas');
-    // botones_falta.forEach(boton => {
-    //     boton.addEventListener('click', deshabilitarBotones);
-    // })
-
     //Con este pedazo de código hacemos que se borren los mensajes de error y éxito a los 3 segundos de aparecer.
     const errores = document.getElementsByClassName('errores')[0] || undefined;
     const exitos = document.getElementsByClassName('exitos')[0] || undefined;

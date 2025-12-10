@@ -26,7 +26,7 @@ class MySQLBBDD implements ConexionBBDD{
      */
     public function getConexion(): PDO{
         $host = "localhost";
-        $puerto = 3306;
+        $puerto = 3308;
         $charset = "utf8mb4";
         $nombre_base = "reicom";
         $usuario = "gestion_reicom";

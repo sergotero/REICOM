@@ -14,9 +14,9 @@
         die();
     }else {
         $usuario = $_SESSION['usuario'];
-        if($usuario->getRol() == 'Profesor'){
+        if($usuario->getRol() == 'Admin'){
             //Redirigimos la página al buscador normal
-            header('Location: ./../index.php');
+            header('Location: ./../admin/form_buscador_alumnos.php');
             die();
         }
     }
@@ -96,13 +96,6 @@
                 'linea'    => $e->getLine(),
             ];
         }
-    }
-
-    if(isset($_POST['modificar'])){
-        $id_alumno = $_POST['modificar'];
-        $_SESSION['id_alumno'] = $id_alumno;
-        header('Location: ./form_modificar_alumnos.php?origen=buscador');
-        die();
     }
 
     if(isset($_SESSION['alumnos'])){
@@ -272,7 +265,6 @@
                                     <button type='button' name='asistencia' value='{$alumno->getid()}'>Asiste</button>
                                     <button type='button' name='falta' value='{$alumno->getid()}'>Falta</button>
                                     <button type='button' name='restablecer' value='{$alumno->getid()}' title='Elimina la asistencia/falta del alumno del día en curso'>Borrar A/F</button>
-                                    <button type='submit' name='modificar' value='{$alumno->getid()}' title='Permite modificar los datos del alumno'>Modificar</button>
                                 </td>
                             </tr>
                         MARCA;

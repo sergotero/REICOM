@@ -149,6 +149,20 @@ try {
             
                     // Verificamos faltas
                     if(($alumno->getFaltas() != null) && ($alumno->getFalta($hoy) != null) && ($alumno->getFalta($hoy)->getFecha() == $hoy)){
+
+                        //Controla el fin de la página para evitar errores
+                        if ($pdf->GetY() > 260) { // Ajusta según márgenes y tamaño de hoja
+                            $pdf->AddPage();
+                            // Redibuja la cabecera de tabla
+                            $pdf->SetFont('', 'B');
+                            $pdf->MultiCell($anchoCurso, 6, "Curso", 1, 'C', 1, 0);
+                            $pdf->MultiCell($anchoGrupo, 6, "Grupo", 1, 'C', 1, 0);
+                            $pdf->MultiCell($anchoAlumno, 6, "Apellidos y nombre", 1, 'C', 1, 0);
+                            $pdf->MultiCell($anchoAlergias, 6, "Alergias e intolerancias", 1, 'C', 1, 0);
+                            $pdf->MultiCell($anchoActividades, 6, "Actividades", 1, 'C', 1, 0);
+                            $pdf->Ln();
+                            $pdf->SetFont('', '');
+                        }
                         
                         //Cambiamos el tipo de texto (a normal)
                         $pdf->SetFont('', '');

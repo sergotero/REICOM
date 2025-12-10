@@ -126,7 +126,12 @@
                     ];
                     continue;
                 }
+
             }
+            $exitos[] = [
+                'codigo' => CodigosExito::ALUMNO_INSERTAR,
+                'mensaje' => 'La subida se ha realizado de manera exitosa'
+            ];
         } else{
             $errores[] = [
                 'codigo' => CodigosError::GENERICO_SIN_CODIGO,

@@ -15,7 +15,6 @@
     }else {
         $usuario = $_SESSION['usuario'];
         if($usuario->getRol() == 'Profesor'){
-            //Redirigimos la página al buscador normal
             header('Location: ./../index.php');
             die();
         }

@@ -25,11 +25,11 @@
                 if(password_verify($pass, $usuario->getPass())){
                 
                 $_SESSION['usuario'] = $usuario;
-                if($usuario->getRol() == 'Profesor'){
-                    header('Location: ./index.php');
+                if($usuario->getRol() == 'Administrador'){
+                    header('Location: ./admin/form_listado_alumnos.php');
                     die();
                 } else {
-                    header('Location: ./admin/form_listado_alumnos.php');
+                    header('Location: ./profesor/form_listado_alumnos.php');
                     die();
                 }
 

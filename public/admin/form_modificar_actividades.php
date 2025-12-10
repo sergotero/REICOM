@@ -194,7 +194,7 @@
                 <div class="inputgroup">
                     <?php
                         $dias_semana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
-                        $dias = explode(", ", $actividad->getDias());
+                        $dias = $actividad->getDias();
                         foreach ($dias_semana as $dia) {
                             if(in_array($dia, $dias)){
                                 echo <<<MARCA

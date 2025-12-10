@@ -732,7 +732,7 @@ class Gestor{
             $h_inicio = $actividad->getHoraInicio();
             $h_fin = $actividad->getHoraFin();
             $ubicacion = $actividad->getUbicacion();
-            $dias = $actividad->getDias();
+            $dias = implode(", ", $actividad->getDias());
 
             $consulta->bindParam(":ac", $nombre, PDO::PARAM_STR);
             $consulta->bindParam(":hi", $h_inicio, PDO::PARAM_STR);
@@ -897,7 +897,7 @@ class Gestor{
             $h_inicio = $actividad->getHoraInicio();
             $h_fin = $actividad->getHoraFin();
             $ubicacion = $actividad->getUbicacion();
-            $dias = $actividad->getDias();
+            $dias = implode(", ", $actividad->getDias());
 
             $consulta->bindParam(':ac', $nombre, PDO::PARAM_STR);
             $consulta->bindParam(':hi', $h_inicio, PDO::PARAM_STR);

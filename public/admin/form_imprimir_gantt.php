@@ -210,40 +210,52 @@ try {
             // FILAS DE ALUMNOS DEL GRUPO
             // ================================
             $pdf->SetFont('', ''); // texto normal
-    
+
+            // Altura estimada de fila y cabecera
+            $alturaFila = 6;
+            $alturaCabecera = 6;
+            $margenInferior = PDF_MARGIN_BOTTOM;
+
             foreach ($alumnos as $alumno) {
-                //Saltamos a los alumnos que no pertenezcan al grupo actual
                 if ($alumno->getGrupo() !== $grupo) {
                     continue;
                 }
-    
-                // Les asignamos la tarifa correspondiente
-                foreach ($tarifas as $tarifa) {
-                    if ($alumno->getTarifa()->getId() == $tarifa->getId()) {
-                        $alumno->setTarifa(new Tarifa($tarifa->getTarifa()));
+
+                // Verifica si hay espacio suficiente para imprimir una fila + cabecera
+                if ($pdf->GetY() > ($pdf->getPageHeight() - $margenInferior - ($alturaFila + $alturaCabecera))) {
+                    // No hay espacio: creamos nueva página
+                    $pdf->AddPage('L', 'A4');
+
+                    // Redibujamos cabecera del grupo (idéntica a la primera)
+                    $pdf->SetFont('', 'B');
+                    $pdf->MultiCell($anchoAlumno, $alturaCabecera, "{$curso} - {$grupo}", 1, 'C', 1, 0);
+                    $pdf->MultiCell($anchoTarifa, $alturaCabecera, "T", 1, 'C', 1, 0);
+                    for ($d = 1; $d <= 31; $d++) {
+                        $dia = str_pad($d, 2, "0", STR_PAD_LEFT);
+                        $pdf->MultiCell($anchoDia, $alturaCabecera, $dia, 1, 'C', 1, 0);
                     }
+                    $pdf->Ln();
+                    $pdf->SetFont('', '');
                 }
-    
-                // Nombre completo en la primera columna
+
+                // ==============================
+                // Fila del alumno
+                // ==============================
                 $nombre = "{$alumno->getApellido1()} {$alumno->getApellido2()}, {$alumno->getNombre()}";
-                $pdf->MultiCell($anchoAlumno, 6, $nombre, 1, 'L', 0, 0, '', '', true, 0, false, true, 6, 'M');
-    
-                // Tarifa
-                $pdf->MultiCell($anchoTarifa, 6, $alumno->getTarifa()->getTarifa(), 1, 'C', 0, 0, '', '', true, 0, false, true, 6, 'M');
-    
-                // Calendario de faltas (31 días)
+                $pdf->MultiCell($anchoAlumno, $alturaFila, $nombre, 1, 'L', 0, 0);
+
+                $pdf->MultiCell($anchoTarifa, $alturaFila, $alumno->getTarifa()->getTarifa(), 1, 'C', 0, 0);
+
                 $calendario_faltas = $alumno->getCalendario();
                 foreach ($calendario_faltas as $dia => $falta) {
                     $marca = $falta != '' ? "X" : "";
-                    $pdf->MultiCell($anchoDia, 6, $marca, 1, 'C', 0, 0, '', '', true, 0, false, true, 6, 'M');
+                    $pdf->MultiCell($anchoDia, $alturaFila, $marca, 1, 'C', 0, 0);
                 }
-    
-                // Salto de línea al terminar la fila de este alumno
+
                 $pdf->Ln();
             }
         }
-        //Creamos un salto de línea para separar los grupos
-        $pdf->Ln();
+
     }
 
     // =======================
