@@ -499,7 +499,7 @@ Debido a que la metodología de trabajo es híbrida y el proyecto es de escala m
 
 # Manual de usuario
 
-La documentación correspondiente al manejo de la aplicación está disponible [a través de este enlace](/docs/pdf/manual-de-usuario.pdf). 
+La documentación correspondiente al manejo de la aplicación está disponible [a través de este enlace](/docs/pdfs/manual-de-usuario.pdf). 
 
 - - -
 
