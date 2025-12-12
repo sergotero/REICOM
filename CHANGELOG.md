@@ -10,10 +10,12 @@ y este proyecto sigue [Semantic Versioning](https://semver.org/lang/es/).
 
 ---
 
-## [0.9.3] - 2025-12-11
+## [0.9.4] - 2025-12-12
 
 ### Añadido
-- Se han añadido los archivos `reicom_mySQL.sql` y `reicom_mariaDB.sql` al proyecto debido a que las bases de datos MariaDB presentan ciertas incompatibilidades con la codificación de datos.
+- Se ha añadido el archivo `manual-de-usuario.pdf` dentro de la carpeta `docs/pdfs`.
+- Se ha incluido un enlace a dicho manual en el archivo `README.md`.
+
 ---
 
 ## [0.0.3 → 0.6.0] - Consolidación posterior (julio–septiembre 2025)
@@ -31,6 +33,13 @@ Además de los hitos detallados arriba, durante este periodo se implementaron y 
 - Añadido soporte para buscadores avanzados y botones de asistencia múltiple.
 - Creación del botón **Eliminador**, sección específica y mejora en el sistema de informes.
 - Inclusión de nuevas gráficas e informes visuales (Gantt, comedor, estadísticas).
+
+---
+
+## [0.9.3] - 2025-12-11
+
+### Añadido
+- Se han añadido los archivos `reicom_mySQL.sql` y `reicom_mariaDB.sql` al proyecto debido a que las bases de datos MariaDB presentan ciertas incompatibilidades con la codificación de datos.
 
 ---
 

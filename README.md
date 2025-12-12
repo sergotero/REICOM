@@ -110,12 +110,12 @@ Nota: La aplicación no requiere aceleración gráfica ni recursos avanzados de 
     *   PHP: 8.2.12 o superior
     *   Zend Engine: v4.2.12
     *   Extensiones necesarias:
-    *   pdo\_mysql
-    *   mbstring
-    *   json
-    *   curl
-    *   gd (recomendado para funcionalidades gráficas)
-    *   opcache (recomendado para rendimiento)
+        *   pdo\_mysql
+        *   mbstring
+        *   json
+        *   curl
+        *   gd (recomendado para funcionalidades gráficas)
+        *   opcache (recomendado para rendimiento)
 4.  Extensiones opcionales:
     *   xdebug (solo para entornos de desarrollo)
 5.  Librerías externas
@@ -496,6 +496,10 @@ Debido a que la metodología de trabajo es híbrida y el proyecto es de escala m
 | CP05 | CRUD Actividad | Crear una actividad, modificar su horario y eliminarla (con switch activado). | El ciclo CRUD se completa sin errores, verificando la eliminación de la actividad en BBDD. |
 | CP06 | Informe Diario | Generar el informe PDF “Faltas comedor” en un día con faltas registradas. | Se abre el PDF conteniendo únicamente a los alumnos con marca X hoy, incluyendo su información de alergias y actividades del día. |
 | CP07 | Subida Masiva | Intentar subir un CSV con un alumno duplicado y un alumno nuevo. | El alumno nuevo se inserta. Se muestra un mensaje de éxito general y un aviso de error específico listando al alumno duplicado. |
+
+# Manual de usuario
+
+La documentación correspondiente al manejo de la aplicación está disponible [a través de este enlace](/docs/pdf/manual-de-usuario.pdf). 
 
 - - -
 
